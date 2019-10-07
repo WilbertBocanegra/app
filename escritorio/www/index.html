@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!--
+  Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+  Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+          * Enable inline JS: add 'unsafe-inline' to default-src
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title> </title>
+  <link rel="stylesheet" href="lib/framework7/css/framework7.bundle.min.css">
+  <link rel="stylesheet" href="lib/framework7/css/framework7.keypad.min.css">
+  <link rel="stylesheet" href="css/framework7-icons.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!--<link rel="icon" href="https://image.flaticon.com/icons/png/512/97/97895.png">-->
+</head>
+
+<body>
+  <div id="app">
+    <div class="panel panel-left panel-reveal color-theme-black">
+      <div class="page theme-dark">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="title text-color-white">Menu</div>
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="list" style="margin-top:0px;">
+            <ul>
+              <li class="accordion-item"><a href="#" class="item-content item-link">
+                  <div class="item-inner">
+                    <div class="item-title">Horarios</div>
+                  </div>
+                </a>
+                <div class="accordion-item-content">
+                  <div class="list" style="margin-top:0px;">
+                    <ul>
+                      <li>
+                        <a href="/horario/" class="item-link item-content" data-clear-previous-history="true" data-view=".view-main">
+                          <div class="item-media"><i class="icon f7-icons text-color-white">home</i></div>
+                          <div class="item-inner">
+                            <div class="item-title">Crear Horario</div>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/horario/" class="item-link item-content" data-clear-previous-history="true" data-view=".view-main">
+                          <div class="item-media"><i class="icon f7-icons text-color-white">home</i></div>
+                          <div class="item-inner">
+                            <div class="item-title">Ver horarios</div>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="item-divider"></li>
+
+              <li class="accordion-item"><a href="#" class="item-content item-link">
+                  <div class="item-inner">
+                    <div class="item-title">Noticias</div>
+                  </div>
+                </a>
+                <div class="accordion-item-content">
+                  <div class="list" style="margin-top:0px;">
+                    <ul>
+                      <li>
+                        <a href="/noticia/" class="item-link item-content">
+                          <div class="item-media"><i class="icon f7-icons text-color-white">home</i></div>
+                          <div class="item-inner">
+                            <div class="item-title">Crear Noticia</div>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/noticia/" class="item-link item-content">
+                          <div class="item-media"><i class="icon f7-icons text-color-white">home</i></div>
+                          <div class="item-inner">
+                            <div class="item-title">Ver Noticia</div>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+              </li>
+              <li class="item-divider"></li>
+
+
+              <li>
+                <a href="/home/" class="item-link item-content" data-clear-previous-history="true" data-view=".view-main">
+                  <div class="item-media"><i class="icon f7-icons text-color-white">home</i></div>
+                  <div class="item-inner">
+                    <div class="item-title">Inicio</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="statusbar"></div>
+    <div class="view view-main"></div>
+  </div>
+
+  <!-- Cordova -->
+  <script type="text/javascript" src="cordova.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js"></script>
+  <script type="text/javascript">
+    var firebaseConfig = {
+      apiKey: "AIzaSyDvwasxOHjhWxGo2jmb6vKIh1K-Zwp2j9w",
+      authDomain: "updc-f0308.firebaseapp.com",
+      databaseURL: "https://updc-f0308.firebaseio.com",
+      projectId: "updc-f0308",
+      storageBucket: "updc-f0308.appspot.com",
+      messagingSenderId: "327648955515",
+      appId: "1:327648955515:web:34a196696c2079a9"
+    };
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+  </script>
+  <!-- Framework7 library -->
+  <script type="text/javascript" src="lib/framework7/js/framework7.bundle.min.js"></script>
+  <script type="text/javascript" src="lib/framework7/js/framework7.keypad.min.js"></script>
+  <!-- App routes -->
+  <script type="text/javascript" src="js/routes.js"></script>
+  <!-- Your custom app scripts -->
+  <script type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>

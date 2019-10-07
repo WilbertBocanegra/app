@@ -1,0 +1,85 @@
+.demo-card-header-pic .card-header {
+  height: 30vw;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  border-radius: 0px !important;
+}
+
+.demo-card-header-pic .card-content-padding .date {
+  color: #8e8e93;
+}
+
+:root {
+  --f7-panel-width: 220px;
+  --f7-tabbar-link-active-bg-color: transparent;
+
+}
+
+.aurora {
+  --f7-input-height: 36px;
+  --f7-input-text-color: #000000;
+  --f7-input-font-size: 16px;
+  --f7-input-placeholder-color: rgba(0, 0, 0, 0.32);
+  --f7-textarea-padding-vertical: 2px;
+  /*
+  --f7-input-focused-border-color: var(--f7-list-item-border-color);
+  --f7-input-invalid-border-color: var(--f7-list-item-border-color);
+  --f7-input-invalid-text-color: var(--f7-input-error-text-color);
+  */
+  --f7-label-font-size: 11px;
+  --f7-label-text-color: inherit;
+  /*
+  --f7-label-focused-text-color: var(--f7-label-text-color);
+  --f7-label-invalid-text-color: var(--f7-label-text-color);
+  */
+  --f7-floating-label-scale: calc(13 / 11);
+  --f7-inline-label-font-size: 14px;
+  --f7-inline-label-line-height: 1.4;
+  --f7-inline-label-padding-top: 1px;
+  --f7-input-info-text-color: rgba(0, 0, 0, 0.5);
+  --f7-input-clear-button-size: 14px;
+  --f7-input-clear-button-color: red;
+  --f7-input-outline-height: 32px;
+  --f7-input-outline-padding-horizontal: 8px;
+  /*nuevo*/
+  --f7-navbar-height: 46px;
+  --f7-navbar-tablet-height: 38px;
+  --f7-navbar-font-size: 20px;
+  --f7-navbar-inner-padding-left: 15px;
+  --f7-navbar-inner-padding-right: 15px;
+  --f7-navbar-title-font-weight: 600;
+  --f7-navbar-title-margin-left: 0;
+  --f7-navbar-title-margin-right: 0;
+  --f7-navbar-title-text-align: center;
+  --f7-navbar-subtitle-text-color: rgba(0, 0, 0, 0.6);
+  --f7-navbar-subtitle-font-size: 12px;
+  --f7-navbar-subtitle-line-height: 1;
+  --f7-navbar-shadow-image: none;
+  --f7-navbar-large-title-height: 38px;
+  --f7-navbar-large-title-font-size: 26px;
+  --f7-navbar-large-title-font-weight: bold;
+  --f7-navbar-large-title-letter-spacing: -0.03em;
+  --f7-navbar-large-title-padding-left: 15px;
+  --f7-navbar-large-title-padding-right: 15px;
+  --f7-navbar-link-height: auto;
+  --f7-navbar-link-line-height: inherit;
+  --f7-searchbar-height: 38px;
+  --f7-searchbar-inner-padding-left: 8px;
+  --f7-searchbar-inner-padding-right: 8px;
+  --f7-searchbar-input-font-size: 14px;
+  --f7-tabbar-link-inactive-color: rgba(0, 0, 0, 0.5);
+  --f7-tabbar-link-inactive-bg-color: #F7F7F8;
+}
+
+.icon {
+  font-size: 22px !important,
+    color:black;
+}
+
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 50&;
+  text-align: center;
+}

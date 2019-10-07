@@ -1,0 +1,206 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner slip">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+          </a>
+        </div>
+        <div class="title">INICIO</div>
+        <div class="right">
+          <a href="#" class="link popover-open" data-popover=".popover-links">
+            <i class="icon f7-icons text-color-black" style="font-size:30px !important">person_round</i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="panel-left">
+
+    </div>
+    <div class="page-content">
+      <div class="card inset">
+        <div class="card-header">
+          <div class="block-title block-title-medium" style="margin-top:0px !important; margin-bottom:0px !important;">Usuarios</div>
+          <div style="width:50%;">
+            <form data-search-container=".search-list" data-search-in=".item-title" class="searchbar searchbar-init bg-color-white elevation-1">
+              <div class="searchbar-inner">
+                <div class="searchbar-input-wrap">
+                  <input type="search" placeholder="Buscar usuario" />
+                  <i class="searchbar-icon"></i>
+                  <span class="input-clear-button"></span>
+                </div>
+                <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card-content card-content-padding">
+
+          <div class="list searchbar-not-found">
+            <ul>
+              <li>
+                <div class="item-content">
+                  <div class="item-media"><i class="icon f7-icons text-color-red" style="font-size:25px !important;">person</i></div>
+                  <div class="item-inner">
+                    <div class="item-title">
+                      <div class="item-header">No identificado</div>
+                      | Usuario no encontrado
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list search-list searchbar-found">
+            <ul>
+              {{#if loading}}
+                {{#each '123456789'}}
+                  <li class="skeleton-text skeleton-effect-fade">
+                    <div class="item-content">
+                      <div class="item-media">
+                        <div class="skeleton-block" style="width: 40px; height: 40px; border-radius: 50%"></div>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title">
+                          <div class="item-header">___ ____ ___</div>
+                          | _______ ________ _________
+                        </div>
+                        <div class="item-after">
+                          <a class="link margin-left margin-right">
+                            <div class="skeleton-block" style="width: 20px; height: 20px; border-radius: 50%"></div>
+                          </a>
+                          <a class="link  margin-right">
+                            <div class="skeleton-block" style="width: 20px; height: 20px; border-radius: 50%"></div>
+                          </a>
+                          CEO</div>
+                      </div>
+                    </div>
+                  </li>
+                {{/each}}
+              {{else}}
+                {{#each users}}
+                  <li>
+                    <div class="item-content">
+                      <div class="item-media"><i class="icon f7-icons  text-color-blue" style="font-size:25px !important;">person</i></div>
+                      <div class="item-inner">
+                        <div class="item-title">
+                          <div class="item-header">Nombre</div>
+                          | {{nombre}} {{paterno}} {{materno}}
+                        </div>
+                        <div class="item-after">
+                          <a class="link margin-right" style="background-color:#F6F6F6;width:30px; height:30px;border-radius:50%;"><i class="icon f7-icons text-color-blue">eye</i></a>
+                          <a class="link margin-right" style="background-color:#F6F6F6;width:30px; height:30px;border-radius:50%;"><i class="icon f7-icons text-color-red">delete</i></a>
+                          <a class="link  margin-right" style="background-color:#F6F6F6;width:30px; height:30px;border-radius:50%;"><i class="icon f7-icons text-color-orange">edit</i></a>
+                          <div style="margin-top:7px; width:10px; padding-right:30px">
+                            {{cargo}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                {{/each}}
+              {{/if}}
+            </ul>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+    <div class="popover popover-links width-auto">
+      <div class="popover-inner ">
+        <div class="list">
+          <ul>
+            <li>
+              <div class="item-content">
+                <div class="item-media"><i class="icon f7-icons">person</i></div>
+                <div class="item-inner">
+                  <div class="item-title">Wilbert Bocanegra Velazquez</div>
+                  <div class="item-after">CEO</div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="#" class="item-link item-content">
+                <div class="item-media"><i class="icon icon-f7"></i></div>
+                <div class="item-inner">
+                  <div class="item-title">John Doe</div>
+                  <div class="item-after">Cleaner</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="item-link item-content">
+                <div class="item-media"><i class="icon f7-icons">exit</i></div>
+                <div class="item-inner">
+                  <div class="item-title">Cerrar Sesion</div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  return {
+    data: function() {
+      return {
+        users: [],
+        loading: true,
+
+      }
+    },
+    methods: {
+
+    },
+    on: {
+      pageInit: function() {
+        var self = this;
+        let _users = [];
+
+        app.panel.get();
+        app.params.panel.leftBreakpoint = 768;
+        app.panel.left.initBreakpoints({
+          animate: true
+        });
+        $$('.back').on('click', function() {
+          setTimeout(function() {
+            app.panel.left.destroy();
+          }, 350);
+        })
+
+        db.collection("usuarios").get().then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            app.preloader.hide();
+
+            _users.push({
+              id: doc.id,
+              nombre: doc.data().nombre,
+              paterno: doc.data().paterno,
+              materno: doc.data().materno,
+              cargo: doc.data().cargo
+            })
+            self.$setState({
+              users: _users,
+              loading: false
+            });
+
+          });
+        });
+
+      },
+      pageBeforeRemove() {
+        var self = this;
+      },
+
+    }
+  };
+</script>
