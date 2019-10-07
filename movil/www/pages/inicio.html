@@ -1,0 +1,300 @@
+<template>
+  <div class="page" data-name="inicio">
+    <div class="navbar no-shadow">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+          </a>
+        </div>
+        <div class="title">Inicio de Sesión</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <form class="list  no-hairlines-md color-theme-teal" id="inicio">
+        <ul>
+          <li class="item-content item-input">
+            <div class="item-media">
+              <i class="icon f7-icons text-color-black">email</i>
+            </div>
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Correo</div>
+              <div class="item-input-wrap">
+                <input type="email" name="correo" placeholder="ejemplo@ejemplo.com">
+                <span class="input-clear-button text-color-red"></span>
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-media">
+              <i class="icon f7-icons text-color-black">lock_fill</i>
+            </div>
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Contraseña</div>
+              <div class="item-input-wrap">
+                <input type="password" name="contraseña" placeholder="Tu contraseña">
+                <span class="input-clear-button text-color-red"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+      <div class="block block-strong no-hairlines margin-left margin-right">
+        <button class="button button-fill button-raised button-round color-green" @click="iniciosesion">Iniciar Sesión</button>
+      </div>
+      <div class="block block-title text-align-center">¿No te has registrado?</div>
+      <p class="text-align-center">Registrate <a href="#" class="link text-color-red popup-open" data-popup=".registro-usuario"><b>aqui</b></a>
+    </div>
+
+    <!-- Registro usuario-->
+    <div class="popup registro-usuario">
+      <div class="page">
+        <div class="navbar no-shadow">
+          <div class="navbar-inner sliding">
+            <div class="title">Registro</div>
+            <div class="right">
+              <a href="#" class="link popup-close">
+                <i class="icon f7-icons">close</i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="page-content">
+          <form class="list  no-hairlines-md color-theme-teal no-store-data" id="registro">
+            <ul>
+              <li class="item-content item-input">
+                <div class="item-media">
+                  <i class="icon f7-icons text-color-black">person</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-floating-label">Nombre</div>
+                  <div class="item-input-wrap">
+                    <input type="text" name="nombre" placeholder="Tu nombre ">
+                    <span class="input-clear-button text-color-red"></span>
+                  </div>
+                </div>
+              </li>
+              <li class="item-content item-input">
+                <div class="item-media">
+                  <i class="icon f7-icons text-color-black"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-floating-label">Apellido Paterno</div>
+                  <div class="item-input-wrap">
+                    <input type="text" name="paterno" placeholder="Tu apellido paterno">
+                    <span class="input-clear-button text-color-red"></span>
+                  </div>
+                </div>
+              </li>
+              <li class="item-content item-input">
+                <div class="item-media">
+                  <i class="icon f7-icons text-color-black"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-floating-label">Apellido Materno</div>
+                  <div class="item-input-wrap">
+                    <input type="text" name="materno" placeholder="Tu apellido materno">
+                    <span class="input-clear-button text-color-red"></span>
+                  </div>
+                </div>
+              </li>
+              <li class="item-content item-input">
+                <div class="item-media">
+                  <i class="icon f7-icons text-color-black">card</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-floating-label">Matricula</div>
+                  <div class="item-input-wrap">
+                    <input type="text" id="teclado" name="matricula" readonly placeholder="Tu matricula">
+                    <span class="input-clear-button text-color-red"></span>
+                  </div>
+                </div>
+              </li>
+              <li class="item-content item-input">
+                <div class="item-media">
+                  <i class="icon f7-icons text-color-black">email</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-floating-label">Correo</div>
+                  <div class="item-input-wrap">
+                    <input type="email" name="correo" placeholder="ejemplo@ejemplo.com">
+                    <span class="input-clear-button text-color-red"></span>
+                  </div>
+                </div>
+              </li>
+              <li class="item-content item-input">
+                <div class="item-media">
+                  <i class="icon f7-icons text-color-black">lock_fill</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-floating-label">Contraseña</div>
+                  <div class="item-input-wrap">
+                    <input type="password" name="contraseña" placeholder="Tu contraseña">
+                    <span class="input-clear-button text-color-red"></span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </form>
+          <div class="block block-strong no-hairlines margin-left margin-right">
+            <button class="button button-fill button-raised button-round color-green" @click="registrosesion">Registrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Final registro usuario-->
+  </div>
+</template>
+
+<script>
+  return {
+    data: function() {
+      return {
+
+      }
+    },
+    methods: {
+      iniciosesion: () => {
+
+        var usuario = app.form.convertToData('#inicio');
+        var correo = usuario.correo;
+        var contraseña = usuario.contraseña;
+        app.dialog.preloader('Iniciando Sesión', 'red');
+        firebase.auth().signInWithEmailAndPassword(correo, contraseña).then(() => {
+          localStorage.setItem("activo", "activo");
+          mainView.router.navigate('/home/', {
+            animate: false
+          });
+          app.dialog.close();
+        }).catch(function(error) {
+          app.dialog.close();
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode == 'auth/user-not-found') {
+            app.dialog.alert("El correo no existe", '');
+          } else if (errorCode == 'auth/wrong-password') {
+            app.dialog.alert("Contraseña incorrecta", '');
+          } else if (errorCode == 'auth/invalid-email') {
+            app.dialog.alert("Correo invalido", '');
+          } else if (errorCode == 'auth/network-request-failed') {
+            app.dialog.alert("Error de conexión por favor intentelo de nuevo", '');
+
+          }
+        });
+
+
+      },
+      registrosesion: () => {
+
+        var datos = app.form.convertToData('#registro');
+        var nombre = datos.nombre;
+        var paterno = datos.paterno;
+        var materno = datos.materno;
+        var correo = datos.correo;
+        var contraseña = datos.contraseña;
+        var matricula = datos.matricula;
+        var toastCenter = app.toast.create({
+          text: 'Rellene los campos',
+          position: 'center',
+          closeTimeout: 1000,
+        });
+
+        if (nombre == "" || paterno == "" || materno == "" || correo == "" || contraseña == "") {
+          toastCenter.open();
+        } else {
+          app.dialog.preloader('Creando Sesión', 'red');
+
+          firebase.auth().createUserWithEmailAndPassword(correo, contraseña).then(() => {
+
+            var user = firebase.auth().currentUser;
+
+            if (user) {
+              db.collection("usuarios").doc(correo).set({
+                  nombre: nombre,
+                  paterno: paterno,
+                  materno: materno,
+                  correo: correo,
+                  grupo: "",
+                  carrera: "",
+                  matricula: matricula,
+                  contraseña: contraseña,
+                  useruid: user.uid
+                })
+                .then(function() {
+                  localStorage.setItem("activo", "desactivado");
+                  var user = firebase.auth().currentUser;
+
+                  user.updateProfile({
+                    displayName: nombre,
+                    email: correo
+                  }).then(function() {
+                    // Update successful.
+                  }).catch(function(error) {
+                    // An error happened.
+                  });
+                  user.sendEmailVerification().then(function() {
+                    // Email sent.
+                  }).catch(function(error) {
+                    // An error happened.
+                  });
+                  app.dialog.close();
+                  app.dialog.create({
+                    title: 'Sesión creada con éxito',
+                    text: 'Porfavor de iniciar sesión',
+                    buttons: [{
+                      text: 'Ok',
+                      onClick: () => {
+                        app.popup.close();
+                      }
+                    }, ],
+                  }).open();
+                })
+                .catch(function(error) {
+
+                  console.error("Error writing document: ", error);
+                });
+            } else {
+              // No user is signed in.
+            }
+
+          }).catch(function(error) {
+            app.dialog.close();
+
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            if (errorCode == 'auth/email-already-in-use') {
+              app.dialog.alert("El correo ya esta en uso", '');
+            } else if (errorCode == 'auth/weak-password') {
+              app.dialog.alert("La contraseña es muy debil,<br>por favor ingrese otra", '');
+            } else if (errorCode == 'auth/network-request-failed') {
+              app.dialog.alert("No se ha podido crear su sesion ya que no tiene internet, intentelo de nuevo", '');
+
+            }
+            // ...
+          });
+
+        }
+
+      }
+
+    },
+    on: {
+      pageInit: function() {
+
+        var myKeypad = app.keypad.create({
+          inputEl: '#teclado',
+          valueMaxLength: 6,
+          dotButton: false,
+          toolbarCloseText: 'Aceptar',
+          scrollToInput: true
+        });
+
+        app.on('keypadOpen', () => {
+          $$('#teclado').focus();
+        })
+      },
+    },
+  };
+</script>
