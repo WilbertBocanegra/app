@@ -1,0 +1,16 @@
+1.-cordova platform add android
+
+2.-cordova build --release android
+
+3.-keytool -genkey -v -keystore app.keystore -alias app -keyalg RSA -keysize 2048 -validity 10000
+
+4.-jarsigner -verbose -tsa http://timestamp.comodoca.com -sigalg SHA1withRSA -digestalg SHA1 -keystore app.keystore app-release-unsigned.apk app
+
+5.-~/Android/Sdk/build-tools/28.0.3 $ ./zipalign -v 4 app-release-unsigned.apk calculadora-martin.apk
+
+
+/////////
+antes de agregar la plataforma android
+cordova plugin rm cordova-plugin-compat --force
+
+cordova plugin add cordova-plugin-compat@1.2
