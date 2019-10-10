@@ -29,7 +29,7 @@
 
         <div class="list no-hairlines" style="margin-bottom:0px; margin-top:0px">
           <ul>
-            <li class="item-divider tahold" >Acerca de ti</li>
+            <li class="item-divider tahold">Acerca de ti</li>
             <li>
               <div class="item-content">
                 <div class="item-media tahold"><i class="f7-icons">person_round</i></div>
@@ -242,6 +242,17 @@
         var self = this;
         var storageRef = storage.ref();
         let _perfil = [];
+
+
+
+        app.request.promise.get('http://webcore.uttab.edu.mx/webcore/apps/gettoken.jsp', {
+            uid: '421730007_i',
+            pwd: 'vevalenci0'
+          })
+          .then(function(res) {
+            $$('.articles').html(res.data);
+            console.log('Load was performed');
+          })
 
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {

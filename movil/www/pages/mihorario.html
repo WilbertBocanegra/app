@@ -35,23 +35,13 @@
       <div class="tabs">
         <div id="lunes" class="page-content sinhorario tab tab-lunes">
 
-          {{#if loading}}
-            <div class="block-title"></div>
-            <div class="block block-strong align-items-stretch text-align-center no-hairlines">
-              <div class="row text-align-center">
-                <div class="col-100">
-                  <div class="preloader confi-preloader color-multi"></div>
-                </div>
-              </div>
-            </div>
-          {{else}}
-            <div class="list" style="margin-bottom:0px; margin-top:0px;">
-              <ul>
-                <li class="item-divider"></li>
-                {{#each lunes}}
 
-                  {{#each materias}}
-                    <!--  <div class="card">
+          <div class="list" style="margin-bottom:0px; margin-top:0px;">
+            <ul>
+              <li class="item-divider"></li>
+              {{#each lunes}}
+
+                <!--  <div class="card">
               <div class="card-header">{{inicia}}:00 - {{termina}}:00</div>
               <div class="card-content card-content-padding">
                 <div class="display-flex justify-content-space-between align-items-flex-start margin-bottom">
@@ -67,95 +57,42 @@
               </div>
             </div>-->
 
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="f7-icons">time</i></div>
-                        <div class="item-inner">
-                          <div class="item-title">
-                            <div class="item-header">Hora</div>
-                            | {{inicia}}:00 - {{termina}}:00
-                          </div>
-                        </div>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">clock_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Hora</div>
+                        | {{hora}}
                       </div>
-                    </li>
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="f7-icons">collection</i></div>
-                        <div class="item-inner">
-                          <div class="item-title">
-                            <div class="item-header">Materia</div>
-                            | {{materia}}
-                          </div>
-                        </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">rectangle_fill_on_rectangle_angled_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Materia</div>
+                        | {{hrtext}}
                       </div>
-                    </li>
-                    {{#if maestro}}
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">person</i></div>
-                          <div class="item-inner">
-                            <div class="item-title" style="white-space:normal; overflow: visible;">
-                              <div class="item-header">Maestro</div>
-                              | {{maestro}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">business</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Edificio</div>
-                              | {{edificio}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">data_fill</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Salón</div>
-                              | {{salon}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    {{else}}
-                      <div class="" style="display:none">
+                    </div>
+                  </div>
+                </li>
 
-                      </div>
-                    {{/if}}
+                <li class="item-divider"></li>
 
-                    <li class="item-divider"></li>
-
-                  {{/each}}
-                {{/each}}
-              </ul>
-            </div>
-          {{/if}}
+              {{/each}}
+            </ul>
+          </div>
         </div>
         <div id="martes" class="page-content sinhorario tab tab-martes">
-          {{#if loading}}
-            <div class="block-title"></div>
-            <div class="block block-strong align-items-stretch text-align-center no-hairlines">
-              <div class="row text-align-center">
-                <div class="col-100">
-                  <div class="preloader confi-preloader color-multi"></div>
-                </div>
-              </div>
-            </div>
+          <div class="list" style="margin-bottom:0px; margin-top:0px;">
+            <ul>
+              <li class="item-divider"></li>
+              {{#each martes}}
 
-          {{else}}
-            <div class="list" style="margin-bottom:0px; margin-top:0px;">
-              <ul>
-                <li class="item-divider"></li>
-                {{#each martes}}
-
-                  {{#each materias}}
-                    <!--  <div class="card">
+                <!--  <div class="card">
               <div class="card-header">{{inicia}}:00 - {{termina}}:00</div>
               <div class="card-content card-content-padding">
                 <div class="display-flex justify-content-space-between align-items-flex-start margin-bottom">
@@ -171,96 +108,42 @@
               </div>
             </div>-->
 
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="f7-icons">time</i></div>
-                        <div class="item-inner">
-                          <div class="item-title">
-                            <div class="item-header">Hora</div>
-                            | {{inicia}}:00 - {{termina}}:00
-                          </div>
-                        </div>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">clock_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Hora</div>
+                        | {{hora}}
                       </div>
-                    </li>
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="f7-icons">collection</i></div>
-                        <div class="item-inner">
-                          <div class="item-title" style="white-space:normal; overflow: visible;">
-                            <div class="item-header">Materia</div>
-                            | {{materia}}
-                          </div>
-                        </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">rectangle_fill_on_rectangle_angled_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Materia</div>
+                        | {{hrtext}}
                       </div>
-                    </li>
-                    {{#if maestro}}
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">person</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Maestro</div>
-                              | {{maestro}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">business</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Edificio</div>
-                              | {{edificio}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">data_fill</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Salón</div>
-                              | {{salon}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    {{else}}
-                      <div class="" style="display:none">
+                    </div>
+                  </div>
+                </li>
 
-                      </div>
-                    {{/if}}
+                <li class="item-divider"></li>
 
-                    <li class="item-divider"></li>
-
-                  {{/each}}
-                {{/each}}
-              </ul>
-            </div>
-
-          {{/if}}
+              {{/each}}
+            </ul>
+          </div>
         </div>
         <div id="miercoles" class="page-content sinhorario tab tab-miercoles">
-          {{#if loading}}
-            <div class="block-title"></div>
-            <div class="block block-strong align-items-stretch text-align-center no-hairlines">
-              <div class="row text-align-center">
-                <div class="col-100">
-                  <div class="preloader confi-preloader color-multi"></div>
-                </div>
-              </div>
-            </div>
+          <div class="list" style="margin-bottom:0px; margin-top:0px;">
+            <ul>
+              <li class="item-divider"></li>
+              {{#each miercoles}}
 
-          {{else}}
-            <div class="list" style="margin-bottom:0px; margin-top:0px;">
-              <ul>
-                <li class="item-divider"></li>
-                {{#each miercoles}}
-
-                  {{#each materias}}
-                    <!--  <div class="card">
+                <!--  <div class="card">
               <div class="card-header">{{inicia}}:00 - {{termina}}:00</div>
               <div class="card-content card-content-padding">
                 <div class="display-flex justify-content-space-between align-items-flex-start margin-bottom">
@@ -275,97 +158,42 @@
                 <div class="chip color-blue align-self-flex-end chip-label ">Salon: {{salon}}</div>
               </div>
             </div>-->
-
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="f7-icons">time</i></div>
-                        <div class="item-inner">
-                          <div class="item-title">
-                            <div class="item-header">Hora</div>
-                            | {{inicia}}:00 - {{termina}}:00
-                          </div>
-                        </div>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">clock_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Hora</div>
+                        | {{hora}}
                       </div>
-                    </li>
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="f7-icons">collection</i></div>
-                        <div class="item-inner">
-                          <div class="item-title" style="white-space:normal; overflow: visible;">
-                            <div class="item-header">Materia</div>
-                            | {{materia}}
-                          </div>
-                        </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">rectangle_fill_on_rectangle_angled_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Materia</div>
+                        | {{hrtext}}
                       </div>
-                    </li>
-                    {{#if maestro}}
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">person</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Maestro</div>
-                              | {{maestro}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">business</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Edificio</div>
-                              | {{edificio}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">data_fill</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Salón</div>
-                              | {{salon}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    {{else}}
-                      <div class="" style="display:none">
+                    </div>
+                  </div>
+                </li>
 
-                      </div>
-                    {{/if}}
+                <li class="item-divider"></li>
 
-                    <li class="item-divider"></li>
-
-                  {{/each}}
-                {{/each}}
-              </ul>
-            </div>
-
-          {{/if}}
+              {{/each}}
+            </ul>
+          </div>
         </div>
         <div id="jueves" class="page-content sinhorario tab tab-jueves">
-          {{#if loading}}
-            <div class="block-title"></div>
-            <div class="block block-strong align-items-stretch text-align-center no-hairlines">
-              <div class="row text-align-center">
-                <div class="col-100">
-                  <div class="preloader confi-preloader color-multi"></div>
-                </div>
-              </div>
-            </div>
+          <div class="list" style="margin-bottom:0px; margin-top:0px;">
+            <ul>
+              <li class="item-divider"></li>
+              {{#each jueves}}
 
-          {{else}}
-            <div class="list" style="margin-bottom:0px; margin-top:0px;">
-              <ul>
-                <li class="item-divider"></li>
-                {{#each jueves}}
-
-                  {{#each materias}}
-                    <!--  <div class="card">
+                <!--  <div class="card">
               <div class="card-header">{{inicia}}:00 - {{termina}}:00</div>
               <div class="card-content card-content-padding">
                 <div class="display-flex justify-content-space-between align-items-flex-start margin-bottom">
@@ -381,95 +209,42 @@
               </div>
             </div>-->
 
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="f7-icons">time</i></div>
-                        <div class="item-inner">
-                          <div class="item-title">
-                            <div class="item-header">Hora</div>
-                            | {{inicia}}:00 - {{termina}}:00
-                          </div>
-                        </div>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">clock_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Hora</div>
+                        | {{hora}}
                       </div>
-                    </li>
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="f7-icons">collection</i></div>
-                        <div class="item-inner">
-                          <div class="item-title" style="white-space:normal; overflow: visible;">
-                            <div class="item-header">Materia</div>
-                            | {{materia}}
-                          </div>
-                        </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">rectangle_fill_on_rectangle_angled_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Materia</div>
+                        | {{hrtext}}
                       </div>
-                    </li>
-                    {{#if maestro}}
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">person</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Maestro</div>
-                              | {{maestro}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">business</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Edificio</div>
-                              | {{edificio}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">data_fill</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Salón</div>
-                              | {{salon}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    {{else}}
-                      <div class="" style="display:none">
+                    </div>
+                  </div>
+                </li>
 
-                      </div>
-                    {{/if}}
+                <li class="item-divider"></li>
 
-                    <li class="item-divider"></li>
-
-                  {{/each}}
-                {{/each}}
-              </ul>
-            </div>
-          {{/if}}
+              {{/each}}
+            </ul>
+          </div>
         </div>
         <div id="viernes" class="page-content sinhorario tab tab-viernes">
-          {{#if loading}}
-            <div class="block-title"></div>
-            <div class="block block-strong align-items-stretch text-align-center no-hairlines">
-              <div class="row text-align-center">
-                <div class="col-100">
-                  <div class="preloader confi-preloader color-multi"></div>
-                </div>
-              </div>
-            </div>
+          <div class="list" style="margin-bottom:0px; margin-top:0px;">
+            <ul>
+              <li class="item-divider"></li>
+              {{#each viernes}}
 
-          {{else}}
-            <div class="list" style="margin-bottom:0px; margin-top:0px;">
-              <ul>
-                <li class="item-divider"></li>
-                {{#each viernes}}
-
-                  {{#each materias}}
-                    <!--  <div class="card">
+                <!--  <div class="card">
               <div class="card-header">{{inicia}}:00 - {{termina}}:00</div>
               <div class="card-content card-content-padding">
                 <div class="display-flex justify-content-space-between align-items-flex-start margin-bottom">
@@ -484,77 +259,34 @@
                 <div class="chip color-blue align-self-flex-end chip-label ">Salon: {{salon}}</div>
               </div>
             </div>-->
-
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="f7-icons">time</i></div>
-                        <div class="item-inner">
-                          <div class="item-title">
-                            <div class="item-header">Hora</div>
-                            | {{inicia}}:00 - {{termina}}:00
-                          </div>
-                        </div>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">clock_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Hora</div>
+                        | {{hora}}
                       </div>
-                    </li>
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="f7-icons">collection</i></div>
-                        <div class="item-inner">
-                          <div class="item-title" style="white-space:normal; overflow: visible;">
-                            <div class="item-header">Materia</div>
-                            | {{materia}}
-                          </div>
-                        </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">rectangle_fill_on_rectangle_angled_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Materia</div>
+                        | {{hrtext}}
                       </div>
-                    </li>
-                    {{#if maestro}}
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">person</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Maestro</div>
-                              | {{maestro}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">business</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Edificio</div>
-                              | {{edificio}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="f7-icons">data_fill</i></div>
-                          <div class="item-inner">
-                            <div class="item-title">
-                              <div class="item-header">Salón</div>
-                              | {{salon}}
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    {{else}}
-                      <div class="" style="display:none">
+                    </div>
+                  </div>
+                </li>
 
-                      </div>
-                    {{/if}}
+                <li class="item-divider"></li>
 
-                    <li class="item-divider"></li>
-
-                  {{/each}}
-                {{/each}}
-              </ul>
-            </div>
-
-          {{/if}}
+              {{/each}}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -582,80 +314,6 @@
     },
     on: {
       pageMounted: function() {
-
-        /*
-                var docData = {
-
-                  materias: [{
-                      inicia: 7,
-                      termina: 8,
-                      maestro: "Octavio Elias Sánchez Aquino",
-                      materia: "Base De Datos",
-                      salon: "11",
-                      edificio: "1"
-                    }, {
-                      inicia: 8,
-                      termina: 9,
-                      maestro: "Octavio Elias Sánchez Aquino",
-                      materia: "Base De Datos",
-                      salon: "11",
-                      edificio: "1"
-                    },
-                    {
-                      inicia: 9,
-                      termina: 10,
-                      maestro: "Octavio Elias Sánchez Aquino",
-                      materia: "Graficación Multimedia",
-                      salon: "11",
-                      edificio: "1"
-                    },
-                    {
-                      inicia: 10,
-                      termina: 11,
-                      maestro: "José Ney Garrido Vázquez",
-                      materia: "Análisis De Sistemas",
-                      salon: "7",
-                      edificio: "2"
-                    },
-                    {
-                      inicia: 11,
-                      termina: 12,
-                      maestro: "José Ney Garrido Vázquez",
-                      materia: "Análisis De Sistemas",
-                      salon: "7",
-                      edificio: "2"
-                    },
-                    {
-                      inicia: 12,
-                      termina: 13,
-                      maestro: "José Ney Garrido Vázquez",
-                      materia: "Compiladores E Interprete",
-                      salon: "11",
-                      edificio: "2"
-                    },
-                    {
-                      inicia: 13,
-                      termina: 14,
-                      maestro: "José Ney Garrido Vázquez",
-                      materia: "Compiladores E Interprete",
-                      salon: "11",
-                      edificio: "2"
-                    },
-                    {
-                      inicia: 14,
-                      termina: 15,
-                      maestro: "Jose Luis Hernández Lazo",
-                      materia: "Ética Profesional",
-                      salon: "2",
-                      edificio: "1"
-                    },
-                  ],
-
-                };
-                db.collection("horarios/Software/grupos/S1-6/dias").doc("viernes").set(docData).then(function() {
-                  console.log("Document successfully written!");
-                });
-        */
         var fecha = new Date();
         var dias = new Array('domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado')
         var hora = fecha.getHours();
@@ -682,172 +340,59 @@
         }
         var self = this;
         var app = self.$app;
-        let _perfil = [];
+
+      },
+
+      pageInit: function() {
+        var self = this;
+        var app = self.$app;
         let _lunes = [];
         let _martes = [];
         let _miercoles = [];
         let _jueves = [];
         let _viernes = [];
-        var name, email, photoUrl, uid, emailVerified;
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            name = user.displayName;
-            email = user.email;
-            emailVerified = user.emailVerified;
-            photoURL = user.photoURL;
-            isAnonymous = user.isAnonymous;
-            uid = user.uid;
-            providerData = user.providerData;
-
-
-            var consulta_perfil = db.collection("usuarios").doc(email);
-            consulta_perfil.get().then(function(doc) {
-              if (doc.exists) {
-
-                if (doc.data().grupo == '') {
-                  self.$setState({
-                    loading: false
-                  });
-                  $$('.sinhorario').html(
-                    '<div class="block text-align-center tahold" style="font-size:24px;font-weight:bold; margin-top:15%;">No ha registrado ningun horario, por favor seleccione el apartado Mi Cuenta y registre su horario</div>');
-                } else {
-                  _perfil.push({
-                    grupo: doc.data().grupo,
-                  })
-                  self.$setState({
-                    perfil: _perfil,
-                  });
-                  var consulta_lunes = db.collection("horarios/" + doc.data().carrera + "/grupos/" + doc.data().grupo + "/dias").doc("lunes");
-                  var consulta_martes = db.collection("horarios/" + doc.data().carrera + "/grupos/" + doc.data().grupo + "/dias").doc("martes");
-                  var consulta_miercoles = db.collection("horarios/" + doc.data().carrera + "/grupos/" + doc.data().grupo + "/dias").doc("miercoles");
-                  var consulta_jueves = db.collection("horarios/" + doc.data().carrera + "/grupos/" + doc.data().grupo + "/dias").doc("jueves");
-                  var consulta_viernes = db.collection("horarios/" + doc.data().carrera + "/grupos/" + doc.data().grupo + "/dias").doc("viernes");
-
-                  consulta_lunes.get().then(function(doc) {
-                    if (doc.exists) {
-                      _lunes.push({
-                        materias: doc.data().materias,
-                      })
-                      self.$setState({
-                        lunes: _lunes,
-                      });
-                      self.$setState({
-                        loading: false
-                      });
-                    } else {
-                      // doc.data() will be undefined in this case
-                      console.log("No such document!");
-                    }
-                  }).catch(function(error) {
-                    console.log("Error getting document:", error);
-                  });
-
-                  consulta_martes.get().then(function(doc) {
-                    if (doc.exists) {
-                      _martes.push({
-                        materias: doc.data().materias,
-                      })
-                      self.$setState({
-                        martes: _martes,
-                      });
-                      self.$setState({
-                        loading: false
-                      });
-                    } else {
-                      // doc.data() will be undefined in this case
-                      console.log("No such document!");
-                    }
-                  }).catch(function(error) {
-                    console.log("Error getting document:", error);
-                  });
-
-                  consulta_miercoles.get().then(function(doc) {
-                    if (doc.exists) {
-                      _miercoles.push({
-                        materias: doc.data().materias,
-
-                      })
-                      self.$setState({
-                        miercoles: _miercoles,
-                      });
-                      self.$setState({
-                        loading: false
-                      });
-                    } else {
-                      // doc.data() will be undefined in this case
-                      console.log("No such document!");
-                    }
-                  }).catch(function(error) {
-                    console.log("Error getting document:", error);
-                  });
-
-
-
-                  consulta_jueves.get().then(function(doc) {
-                    if (doc.exists) {
-                      _jueves.push({
-                        materias: doc.data().materias,
-
-                      })
-                      self.$setState({
-                        jueves: _jueves,
-                      });
-                      self.$setState({
-                        loading: false
-                      });
-                    } else {
-                      // doc.data() will be undefined in this case
-                      console.log("No such document!");
-                    }
-                  }).catch(function(error) {
-                    console.log("Error getting document:", error);
-                  });
-
-                  consulta_viernes.get().then(function(doc) {
-                    if (doc.exists) {
-                      _viernes.push({
-                        materias: doc.data().materias,
-
-                      })
-                      self.$setState({
-                        viernes: _viernes,
-                      });
-                      self.$setState({
-                        loading: false
-                      });
-                    } else {
-                      // doc.data() will be undefined in this case
-                      console.log("No such document!");
-                    }
-                  }).catch(function(error) {
-                    console.log("Error getting document:", error);
-                  });
-
-                }
-
-
-
-
-              } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-              }
-            }).catch(function(error) {
-              console.log("Error getting document:", error);
-            });
-          } else {
-            // User is signed out.
+        var datos = JSON.parse(localStorage.getItem('id'));
+        app.request({
+          url: 'http://webcore.uttab.edu.mx/webcore/apps/bin/getdata.jsp',
+          headers: {
+            Authorization: datos.Authorization
+          },
+          success: function(data) {
+            localStorage.setItem("horario", data);
           }
         });
 
+        var mihorario = JSON.parse(localStorage.getItem('horario')).data.map((a)=>{
+          a.hora=a.hora.replace(/(dd)(dd)/,'$1:$2');
+          return a;
+        });
+        lunes = mihorario.filter((a, i) => {
+          if (a.dia == 1) return a
+        })
+        martes = mihorario.filter((a, i) => {
+          if (a.dia == 2) return a
+        })
+        miercoles = mihorario.filter((a, i) => {
+          if (a.dia == 3) return a
+        })
+        jueves = mihorario.filter((a, i) => {
+          if (a.dia == 4) return a
+        })
+        viernes = mihorario.filter((a, i) => {
+          if (a.dia == 5) return a
+        })
 
-      },
-      pageInit: () => {
-        var $ptrContent = $$('.ptr-content');
-        // Add 'refresh' listener on it
-        $ptrContent.on('ptr:refresh', function(e) {
-          mainView.router.refreshPage()
-        }, 5000);
+
+
+        self.$setState({
+          lunes: lunes,
+          martes: martes,
+          miercoles: miercoles,
+          jueves: jueves,
+          viernes: viernes
+        });
+
+
 
       },
 

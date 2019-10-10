@@ -160,29 +160,18 @@
         var correo = usuario.correo;
         var contraseña = usuario.contraseña;
         app.dialog.preloader('Iniciando Sesión', 'red');
-        firebase.auth().signInWithEmailAndPassword(correo, contraseña).then(() => {
-          localStorage.setItem("activo", "activo");
+
+        app.request.post('http://webcore.uttab.edu.mx/webcore/apps/gettoken.jsp', {
+          uid: '421730007_i',
+          pwd: 'vevalenci0'
+        }, function(data) {
+          localStorage.setItem("id", data);
           mainView.router.navigate('/home/', {
             animate: false
           });
           app.dialog.close();
-        }).catch(function(error) {
-          app.dialog.close();
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          if (errorCode == 'auth/user-not-found') {
-            app.dialog.alert("El correo no existe", '');
-          } else if (errorCode == 'auth/wrong-password') {
-            app.dialog.alert("Contraseña incorrecta", '');
-          } else if (errorCode == 'auth/invalid-email') {
-            app.dialog.alert("Correo invalido", '');
-          } else if (errorCode == 'auth/network-request-failed') {
-            app.dialog.alert("Error de conexión por favor intentelo de nuevo", '');
 
-          }
         });
-
 
       },
       registrosesion: () => {

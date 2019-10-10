@@ -10,7 +10,7 @@ routes = [{
           url: '/mihorario/'
         });
         var vistaperfil = app.views.create('#perfil', {
-          url: '/perfil/'
+          url: '/usuario/'
         });
       },
     }
@@ -18,6 +18,10 @@ routes = [{
   {
     path: '/perfil/',
     componentUrl: './pages/perfil.html',
+  },
+  {
+    path: '/usuario/',
+    componentUrl: './pages/usuario.html',
   },
   {
     path: '/mihorario/',

@@ -1,6 +1,8 @@
 <template>
   <div class="page">
     <div class="navbar">
+      <div class="navbar-bg"></div>
+
       <div class="navbar-inner sliding">
         <div class="title" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">Noticias</div>
         <!--  <div class="title-large bg-color-white">
@@ -8,106 +10,32 @@
         </div>-->
       </div>
     </div>
-    <div class="page-content  ptr-content">
-      <div class="ptr-preloader">
-        <div class="preloader color-multi"></div>
-        <div class="ptr-arrow"></div>
-      </div>
+    <div class="page-content  ">
 
-      <!--    <div class="list" style="margin-bottom:0px;">
-        <ul>
-          <li>
-            <div class="item-content">
-              <div class="item-media"><i class="f7-icons">time</i></div>
-              <div class="item-inner">
-                <div class="item-title">
-                  <div class="item-header">Hora</div>
-                  | John Doe
-                </div>
+
+      {{#each noticias}}
+        <div class="card card-expandable">
+          <div class="card-content">
+            <div style="background: url('http://www.uttab.edu.mx/images/2451/{{picpreview}}') no-repeat center top; background-size: cover; height: 400px">
+              <div class="card-header text-color-white display-block">
+                {{title}}
+                <br>
+                <small style="opacity: 0.7">{{dodate}}</small>
               </div>
+
+              <a href="#" class="link card-close card-opened-fade-in color-white" style="position: absolute; right: 15px; top: 15px">
+                <i class="icon f7-icons">xmark_circle_fill</i>
+              </a>
             </div>
-          </li>
-          <li class="item-divider"></li>
-          <li>
-            <div class="item-content">
-              <div class="item-media"><i class="f7-icons">collection</i></div>
-              <div class="item-inner">
-                <div class="item-title">
-                  <div class="item-header">Materia</div>
-                  | John Doe
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="item-divider"></li>
-          <li>
-            <div class="item-content">
-              <div class="item-media"><i class="f7-icons">person</i></div>
-              <div class="item-inner">
-                <div class="item-title">
-                  <div class="item-header">Maestro</div>
-                  | John Doe
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="item-divider"></li>
-          <li>
-            <div class="item-content">
-              <div class="item-media"><i class="f7-icons">person</i></div>
-              <div class="item-inner">
-                <div class="item-title">
-                  <div class="item-header">Edificio</div>
-                  | John Doe
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="item-divider"></li>
-          <li>
-            <div class="item-content">
-              <div class="item-media"><i class="f7-icons">person</i></div>
-              <div class="item-inner">
-                <div class="item-title">
-                  <div class="item-header">Salón</div>
-                  | John Doe
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="item-divider"></li>
-        </ul>
-      </div>-->
-      {{#if loading}}
-        <div class="block-title"></div>
-        <div class="block-title text-align-center">
-          <div class="preloader confi-preloader color-multi"></div>
-        </div>
-      {{else}}
-        {{#each noticias}}
-          <div class="card card-expandable" id="{{color}}" data-backdrop="false" style="height:175px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">
-            <div class="card-content ">
-              <div class="bg-color-{{color}} width-auto" style="height: 250px">
-                <div class="card-header text-color-white display-block margin-right	">
-                  {{campo}}
-                  <br>
-                  <small style="opacity: 0.7;">{{brevedescripcion}}</small>
-                </div>
-                <a href="#" class="link card-close card-opened-fade-in color-white" style="position: absolute; right: 15px; top: 15px">
-                  <i class="icon f7-icons">close_round_fill</i>
-                </a>
-              </div>
-              <div class="card-content-padding">
-                <p>{{descripcion}}</p>
-                <p>
-                  <a href="#" class="button button-fill button-round button-large card-close color-{{color}}">Cerrar</a>
-                </p>
-              </div>
+            <div class="card-content-padding">
+              {{content}}
+              <p>
+                <a href="#" class="button button-fill button-round button-large card-close">CERRAR</a>
+              </p>
             </div>
           </div>
-        {{/each}}
-      {{/if}}
-
+        </div>
+      {{/each}}
     </div>
   </div>
 </template>
@@ -128,40 +56,21 @@
     on: {
       pageInit: function() {
         var self = this;
-        let _noticias = [];
+        let _news = [];
 
-        app.on('cardBeforeOpen', function(el) {
-          if (el.id == 'red') {
-            app.statusbar.setBackgroundColor('#ff3b30');
-          } else if (el.id == 'blue') {
-            app.statusbar.setBackgroundColor('#2196f3');
-          } else if (el.id == 'teal') {
-            app.statusbar.setBackgroundColor('#009688');
+
+        app.request({
+          url: 'http://webcore.uttab.edu.mx/webcore/apps/getnews.jsp',
+          success: function(data) {
+            var news = eval(atob(JSON.parse(data).data));
+            //var news = atob(data.data);
+            console.log(news)
+            self.$setState({
+              noticias: news,
+            });
+
           }
-        });
-
-        db.collection("noticias").get().then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
-            _noticias.push({
-              id: doc.id,
-              brevedescripcion: doc.data().brevedescripcion,
-              campo: doc.data().campo,
-              descripcion: doc.data().descripcion,
-              color: doc.data().color
-            })
-            self.$setState({
-              noticias: _noticias,
-            });
-            self.$setState({
-              loading: false
-            });
-          });
-        });
-        var $ptrContent = $$('.ptr-content');
-        // Add 'refresh' listener on it
-        $ptrContent.on('ptr:refresh', function(e) {
-          mainView.router.refreshPage()
-        }, 5000);
+        })
 
       },
     },
