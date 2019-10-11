@@ -1,0 +1,468 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">Grupos</div>
+        <div class="right">
+          <a href="#" class="link popover-open" data-popover=".popover-links">
+            <i class="icon f7-icons">more_vertical_fill</i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="fab fab-right-bottom color-yellow" style="margin-bottom:30px;">
+      <a href="#" @click="guardar"><i class="f7-icons">check</i></a>
+    </div>
+    <div class="page-content">
+      <form class="list accordion-list" id="grupos">
+        <ul>
+          <li class="accordion-item" id="Biotecnología"><a href="#" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">Biotecnología</div>
+              </div>
+            </a>
+            <div class="accordion-item-content">
+              <div class="list">
+                <ul>
+                  {{#each uno}}
+                    <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="grupo" value="{{nombre}}" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">{{nombre}}</div>
+                        </div>
+                      </label>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="accordion-item" id="Electrónica y Telecomunicaciones"><a href="#" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">Electrónica y Telecomunicaciones</div>
+              </div>
+            </a>
+            <div class="accordion-item-content">
+              <div class="list">
+                <ul>
+                  {{#each dos}}
+                    <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="grupo" value="{{nombre}}" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">{{nombre}}</div>
+                        </div>
+                      </label>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="accordion-item" id="Geofísica Petrolera"><a href="#" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">Geofísica Petrolera</div>
+              </div>
+            </a>
+            <div class="accordion-item-content">
+              <div class="list">
+                <ul>
+                  {{#each tres}}
+                    <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="grupo" value="{{nombre}}" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">{{nombre}}</div>
+                        </div>
+                      </label>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="accordion-item" id="Mecatrónica"><a href="#" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">Mecatrónica</div>
+              </div>
+            </a>
+            <div class="accordion-item-content">
+              <div class="list">
+                <ul>
+                  {{#each cuatro}}
+                    <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="grupo" value="{{nombre}}" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">{{nombre}}</div>
+                        </div>
+                      </label>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="accordion-item" id="Mecánica Automotriz"><a href="#" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">Mecánica Automotriz</div>
+              </div>
+            </a>
+            <div class="accordion-item-content">
+              <div class="list">
+                <ul>
+                  {{#each cinco}}
+                    <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="grupo" value="{{nombre}}" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">{{nombre}}</div>
+                        </div>
+                      </label>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="accordion-item" id="Software"><a href="#" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">Software</div>
+              </div>
+            </a>
+            <div class="accordion-item-content">
+              <div class="list">
+                <ul>
+                  {{#each seis}}
+                    <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="grupo" value="{{nombre}}" />
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">{{nombre}}</div>
+                        </div>
+                      </label>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+      <div class="block">
+        Si no encuentra su grupo por favor de comunicarse con nosotros
+      </div>
+    </div>
+
+
+    <div class="popover popover-links">
+      <div class="popover-inner">
+        <div class="list">
+          <ul>
+            <li><a class="list-button item-link sheet-open popover-close" href="#" data-sheet=".demo-sheet-swipe-to-step">Información</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet-modal demo-sheet-swipe-to-step" style="height:auto">
+      <div class="sheet-modal-inner">
+        <div class="swipe-handler"></div>
+        <div class="sheet-modal-swipe-step" id="este">
+          <div class="page-content">
+            <div class="block-title block-title-large">Hola!</div>
+            <div class="block">
+
+              Bievenido! esta es una pequeña informacion para que puedas indentificar cual es tu grupo
+            </div>
+          </div>
+          <div class="padding-horizontal padding-bottom" id="este">
+            <div class="margin-top text-align-center">Desliza hacia arriba para empezar</div>
+          </div>
+        </div>
+        <div class="block">
+          Para poder identificar tu grupo, se necesitan tres pasos y tomaremos como ejemplo este grupo de la carrera de Software
+          <div class="list simple-list">
+            <ul>
+              <li>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title text-align-center">S-1-1</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <p>Paso 1: La letra <b>S</b> es la inicial de tu carrera en este caso tomamos como ejemplo Software en otras carreras aveces son mas iniciales</p>
+          <p> Paso 2: El numero <b>1</b> es el numero del grupo que hay de tu carrera ya que en una carrera pueden aver varios grupos</p>
+          <p> paso 3: El numero siguiente que en este caso es <b>1</b> es el numero del cuatrimestre que te encuestras cursando</p>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</template>
+
+<script>
+  return {
+    data: function() {
+      return {
+        uno: [],
+        dos: [],
+        tres: [],
+        cuatro: [],
+        cinco: [],
+        seis: [],
+        accordion: '',
+
+      }
+    },
+    methods: {
+      guardar: function() {
+        var formData = app.form.convertToData('#grupos');
+        var grupo = formData.grupo;
+        var hola = false;
+        var carrera = this.accordion;
+        $$('input:checked').each(function() {
+          hola = true;
+        });
+
+        if (hola == true) {
+          app.dialog.create({
+            title: '',
+            text: 'Una vez seleccionado el grupo ya no podra escoger otro, si se equivoca puede contactarnos para resolver su problema',
+            buttons: [{
+                text: 'Cancelar'
+              },
+              {
+                text: 'Aceptar',
+                onClick: function() {
+                  app.dialog.preloader('Guardando Horario', 'multi');
+                  firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                      // User is signed in.
+                      var displayName = user.displayName;
+                      var email = user.email;
+                      var emailVerified = user.emailVerified;
+                      var photoURL = user.photoURL;
+                      var isAnonymous = user.isAnonymous;
+                      var uid = user.uid;
+                      var providerData = user.providerData;
+
+                      var washingtonRef = db.collection("usuarios").doc(email);
+                      return washingtonRef.update({
+                          grupo: grupo,
+                          carrera: carrera
+                        })
+                        .then(function() {
+                          console.log("Document successfully updated!");
+                          app.dialog.close();
+                          app.dialog.create({
+                            title: '',
+                            text: 'Grupo guardado con exito',
+                            buttons: [{
+                              text: 'Aceptar',
+                              onClick: function() {
+                                mainView.router.back({
+                                  force: true,
+                                  clearPreviousHistory: true,
+                                });
+                              }
+                            }, ],
+                          }).open();
+                        })
+                        .catch(function(error) {
+                          // The document probably doesn't exist.
+                          console.error("Error updating document: ", error);
+                        });
+
+                    } else {
+                      // User is signed out.
+                      // ...
+                    }
+                  });
+                }
+              }
+            ],
+          }).open();
+
+        } else {
+          app.dialog.alert('No ha seleccionado un grupo, Por favor elija uno', '');
+        }
+
+
+      }
+    },
+    on: {
+      pageInit: function() {
+        var self = this;
+        var app = self.$app;
+        let _uno = [];
+        let _dos = [];
+        let _tres = [];
+        let _cuatro = [];
+        let _cinco = [];
+        let _seis = [];
+
+
+        self.sheetSwipeToStep = self.$app.sheet.create({
+          el: '.demo-sheet-swipe-to-step',
+          swipeToClose: true,
+          swipeToStep: true,
+          backdrop: true,
+        });
+
+        self.sheetSwipeToStep.open();
+
+        app.on('sheetOpened', function() {
+          app.statusbar.setBackgroundColor('#999999');
+        });
+        app.on('sheetClose', function() {
+          app.statusbar.setBackgroundColor('#ffffff');
+
+        });
+
+        app.on('sheetClosed', function() {
+          $$('#este').show();
+
+        });
+        app.on('sheetStepOpen', function() {
+          $$('#este').hide();
+        });
+        app.on('sheetStepClose', function() {
+          $$('#este').show();
+        });
+
+        app.on('accordionOpen', function(el) {
+          self.$setState({
+            accordion: el.id,
+          });
+        });
+
+        app.on('accordionOpen', function(el) {
+          self.$setState({
+            accordion: el.id,
+          });
+        });
+        //
+        db.collection("/horarios/Biotecnología/grupos/").where("activo", "==", true)
+          .get()
+          .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+              // doc.data() is never undefined for query doc snapshots
+              _uno.push({
+                nombre: doc.id,
+              })
+              self.$setState({
+                uno: _uno
+              });
+            });
+          })
+          .catch(function(error) {
+            console.log("Error getting documents: ", error);
+          });
+        //
+        db.collection("/horarios/Electrónica y Telecomunicaciones/grupos/").where("activo", "==", true)
+          .get()
+          .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+              // doc.data() is never undefined for query doc snapshots
+              _dos.push({
+                nombre: doc.id,
+              })
+              self.$setState({
+                dos: _dos
+              });
+            });
+          })
+          .catch(function(error) {
+            console.log("Error getting documents: ", error);
+          });
+        //
+        db.collection("/horarios/Geofísica Petrolera/grupos/").where("activo", "==", true)
+          .get()
+          .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+              // doc.data() is never undefined for query doc snapshots
+              _tres.push({
+                nombre: doc.id,
+              })
+              self.$setState({
+                tres: _tres
+              });
+            });
+          })
+          .catch(function(error) {
+            console.log("Error getting documents: ", error);
+          });
+        //
+        db.collection("/horarios/Mecatrónica/grupos/").where("activo", "==", true)
+          .get()
+          .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+              // doc.data() is never undefined for query doc snapshots
+              _cuatro.push({
+                nombre: doc.id,
+              })
+              self.$setState({
+                cuatro: _cuatro
+              });
+            });
+          })
+          .catch(function(error) {
+            console.log("Error getting documents: ", error);
+          });
+        //
+        db.collection("/horarios/Mecánica Automotriz/grupos/").where("activo", "==", true)
+          .get()
+          .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+              // doc.data() is never undefined for query doc snapshots
+              _cinco.push({
+                nombre: doc.id,
+              })
+              self.$setState({
+                cinco: _cinco
+              });
+            });
+          })
+          .catch(function(error) {
+            console.log("Error getting documents: ", error);
+          });
+        //
+        db.collection("/horarios/Software/grupos/").where("activo", "==", true)
+          .get()
+          .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+              // doc.data() is never undefined for query doc snapshots
+              _seis.push({
+                nombre: doc.id,
+              })
+              self.$setState({
+                seis: _seis
+              });
+            });
+          })
+          .catch(function(error) {
+            console.log("Error getting documents: ", error);
+          });
+
+      },
+    },
+  };
+</script>

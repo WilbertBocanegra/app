@@ -1,0 +1,89 @@
+<template>
+  <div class="page" data-name="inicio">
+    <div class="navbar no-shadow">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+          </a>
+        </div>
+        <div class="title">Inicio de Sesión</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <form class="list  no-hairlines-md color-theme-teal" id="inicio">
+        <ul>
+          <li class="item-content item-input">
+            <div class="item-media">
+              <i class="icon f7-icons text-color-black">barcode_viewfinder</i>
+            </div>
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Matricula</div>
+              <div class="item-input-wrap">
+                <input type="text" name="correo" placeholder="Tu matricula">
+                <span class="input-clear-button text-color-red"></span>
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-media">
+              <i class="icon f7-icons text-color-black">lock</i>
+            </div>
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Contraseña</div>
+              <div class="item-input-wrap">
+                <input type="password" name="contraseña" placeholder="Tu contraseña">
+                <span class="input-clear-button text-color-red"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+      <div class="block block-strong no-hairlines margin-left margin-right">
+        <button class="button button-fill button-raised button-round color-green" @click="iniciosesion">Iniciar Sesión</button>
+      </div>
+    </div>
+    <!-- Final registro usuario-->
+  </div>
+</template>
+
+<script>
+  return {
+    data: function() {
+      return {
+
+      }
+    },
+    methods: {
+      iniciosesion: function() {
+
+        var usuario = app.form.convertToData('#inicio');
+        var matricula= usuario.correo;
+        var contraseña = usuario.contraseña;
+        app.dialog.preloader('Iniciando Sesión', 'red');
+
+        app.request.post('http://webcore.uttab.edu.mx/webcore/apps/gettoken.jsp', {
+          uid: matricula,
+          pwd: contraseña
+        }, function(data) {
+          localStorage.setItem("id", data);
+          localStorage.setItem("matricula", matricula);
+          localStorage.setItem("contraseña", contraseña);
+          mainView.router.navigate('/home/', {
+            animate: false
+          });
+          app.dialog.close();
+
+        });
+
+      },
+
+    },
+    on: {
+      pageInit: function() {
+
+      },
+    },
+  };
+</script>

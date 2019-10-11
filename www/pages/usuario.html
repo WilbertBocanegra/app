@@ -1,0 +1,155 @@
+<template>
+  <div class="page">
+    <div class="navbar tahold">
+      <div class="navbar-bg"></div>
+      <div class="left">
+      </div>
+      <div class="navbar-inner sliding">
+        <div class="title">Perfil</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <img class="elevation-24 margin-bottom margin-top" src="http://saiiut.uttab.edu.mx/getresource?filename=alumnos/{{id}}.jpg" width="150" height="200" style="border-radius:50%; margin-left:30%;" />
+      <div class="list no-hairlines" style="margin-bottom:0px; margin-top:0px">
+        <ul>
+          <li class="item-divider tahold">Mis datos son:</li>
+          {{#if tipousuario}}
+            <li>
+              <div class="item-content tahold">
+                <div class="item-media tahold"><i class="f7-icons">barcode_viewfinder</i></div>
+                <div class="item-inner">
+                  <div class="item-title" style="white-space:normal; overflow: visible;">
+                    <div class="item-header">Matricula</div>
+                    | {{id}}
+                  </div>
+                </div>
+              </div>
+            </li>
+          {{else}}
+            <li>
+              <div class="item-content tahold">
+                <div class="item-media tahold"><i class="f7-icons">barcode_viewfinder</i></div>
+                <div class="item-inner">
+                  <div class="item-title" style="white-space:normal; overflow: visible;">
+                    <div class="item-header">No. Empleado</div>
+                    | {{id}}
+                  </div>
+                </div>
+              </div>
+            </li>
+          {{/if}}
+          <li>
+            <div class="item-content">
+              <div class="item-media tahold"><i class="f7-icons">person_alt_circle</i></div>
+              <div class="item-inner">
+                <div class="item-title" style="white-space:normal; overflow: visible;">
+                  <div class="item-header">Nombre</div>
+                  | {{nombre}}
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media tahold"><i class="f7-icons">layers_alt</i></div>
+              <div class="item-inner">
+                <div class="item-title" style="white-space:normal; overflow: visible;">
+                  <div class="item-header">Division</div>
+                  | {{division}}
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media tahold"><i class="f7-icons">layers</i></div>
+              <div class="item-inner">
+                <div class="item-title" style="white-space:normal; overflow: visible;">
+                  <div class="item-header">Carrera</div>
+                  | {{carrera}}
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media tahold"><i class="f7-icons">map</i></div>
+              <div class="item-inner">
+                <div class="item-title" style="white-space:normal; overflow: visible;">
+                  <div class="item-header">Domicilio</div>
+                  | {{domicilio}}
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="item-divider tahold"><i class="icon f7-icons" style="margin-right:5px;">gear_alt</i>Configuraciones</li>
+          <li>
+            <a href="#" class="item-link item-content" @click="cerrarsesion">
+              <div class="item-media"><i class="icon f7-icons">square_arrow_left</i></div>
+              <div class="item-inner">
+                <div class="item-title">Cerrar Sesión</div>
+              </div>
+            </a>
+          </li>
+          <li class="item-divider" style="height:30px;"></li>
+
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<script>
+  return {
+    data: function() {
+      return {
+
+        loading: true
+      }
+    },
+    methods: {
+      cerrarsesion: function() {
+        app.dialog.create({
+          title: '',
+          text: '¿Esta seguro de cerrar su sesion?',
+          buttons: [{
+              text: 'No',
+            },
+            {
+              text: 'Si',
+              onClick: function() {
+                localStorage.setItem("matricula", '');
+                localStorage.setItem("contraseña", '');
+                mainView.router.navigate('/', {
+                  animate: false
+                });
+              }
+            },
+
+          ],
+        }).open();
+
+      },
+    },
+    on: {
+      pageInit: function() {
+        var self = this;
+        var storageRef = storage.ref();
+        let _perfil = [];
+        var data = JSON.parse(localStorage.getItem('id')).info;
+
+
+        self.$setState({
+          id: data.id,
+          nombre: data.nombre,
+          division: data.division,
+          carrera: data.carrera,
+          domicilio: data.domicilio,
+          tipousuario: data.usertype,
+        });
+
+      },
+    },
+  };
+</script>

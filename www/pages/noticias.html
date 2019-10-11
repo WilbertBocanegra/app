@@ -1,0 +1,119 @@
+<template>
+  <div class="page">
+    <div class="navbar tahold">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="title">Noticias</div>
+        <div class="right">
+          <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-noticias">
+            <i class="icon f7-icons if-not-md">search</i>
+            <i class="icon material-icons md-only">search</i>
+          </a>
+        </div>
+        <form data-search-container=".search-list" data-search-in=".item-title" class="searchbar searchbar-expandable searchbar-noticias searchbar-init">
+          <div class="searchbar-inner">
+            <div class="searchbar-input-wrap">
+              <input type="search" placeholder="Search" />
+              <i class="searchbar-icon"></i>
+              <span class="input-clear-button"></span>
+            </div>
+            <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="page-content">
+      {{#if loading}}
+          <div class="preloader confi-preloader color-multi" style="margin-left:40%;"></div>
+      {{else}}
+        {{#each noticias}}
+          <div class="card demo-card-header-pic">
+            <div style="background-image:url(http://www.uttab.edu.mx/images/2451/{{picpreview}})" class="card-header align-items-flex-end"></div>
+            <div class="card-content card-content-padding">
+              <p>{{title}}</p>
+            </div>
+            <div class="card-footer">{{dodate}}<a href="#" class="button" @click="abrir('{{content}}','{{picpreview}}')">Ver</a></div>
+          </div>
+        {{/each}}
+      {{/if}}
+    </div>
+    <!--Popup-->
+    <div class="popup demo-popup">
+      <div class="page">
+        <div class="navbar">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner">
+            <div class="title">Title</div>
+            <div class="right"><a href="#" class="link popup-close"><i class="icon f7-icons">xmark</i></a></div>
+          </div>
+        </div>
+        <div class="page-content">
+
+        </div>
+      </div>
+    </div>
+</template>
+
+<script>
+  return {
+    data: function() {
+      return {
+        noticias: [],
+        loading: true,
+      }
+    },
+    methods: {
+      abrir: function(content, picpreview) {
+        var dynamicPopup = app.popup.create({
+          content: '<div class="popup demo-popup">' +
+            ' <div class="page">' +
+            '<div class="navbar">' +
+            ' <div class="navbar-bg"></div>' +
+            ' <div class="navbar-inner">' +
+            ' <div class="title">Title</div>' +
+            '<div class="right"><a href="#" class="link popup-close"><i class="f7-icons">xmark</i></a></div>' +
+            '</div>' +
+            ' </div>' +
+            ' <div class="page-content">' +
+            '  <div class="card demo-card-header-pic  elevation-0 demo-lazy " style="  border-radius: 0px;margin-top:0px;margin-left: 0px;margin-right: 0px; margin-bottom:10px !important;">' +
+            '<div style="background-image:url(http://www.uttab.edu.mx/images/2451/' + picpreview +');   border-radius: 0px;margin-top:0px;margin-left: 0px;margin-right: 0px; margin-bottom:10px !important;"class="demo-lazy card-header align-items-flex-end"></div>' +
+            '</div>' +
+            '<br>'+
+            '<div class="block">' +
+            content +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>',
+
+          // Events
+          on: {
+
+          }
+        });
+        dynamicPopup.open();
+      }
+    },
+    on: {
+      pageInit: function() {
+        var self = this;
+
+        app.request({
+          url: 'http://webcore.uttab.edu.mx/webcore/apps/getnews.jsp',
+          success: function(data) {
+            var news = eval(atob(JSON.parse(data).data));
+            //var news = atob(data.data);
+            self.$setState({
+              noticias: news,
+              loading: false
+            });
+          }
+
+        })
+
+
+      },
+    },
+  };
+</script>

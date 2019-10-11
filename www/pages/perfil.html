@@ -1,0 +1,382 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="left">
+      </div>
+      <div class="navbar-inner sliding">
+        <div class="title tahold">Perfil</div>
+        <!--<div class="title-large bg-color-white">
+          <div class="title-large-text">Perfil</div>
+        </div>-->
+      </div>
+    </div>
+    <div class="page-content ptr-content">
+      <div class="ptr-preloader">
+        <div class="preloader color-multi"></div>
+        <div class="ptr-arrow"></div>
+      </div>
+      {{#if loading}}
+        <div class="block-title"></div>
+        <div class="block-title text-align-center" style="margin-bottom:20%;">
+          <div class="preloader color-multi" style="width: 55px;height: 55px;"></div>
+        </div>
+      {{else}}
+        {{#each perfil}}
+          <div class="card demo-card-header-pic card-expandable card-prevent-open " style="height:175px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">
+            <div style="background-image:url('{{imagen}}');" class="padding-bottom lazy lazy-fade-in demo-lazy card-header"></div>
+          </div>
+        {{/each}}
+
+        <div class="list no-hairlines" style="margin-bottom:0px; margin-top:0px">
+          <ul>
+            <li class="item-divider tahold">Acerca de ti</li>
+            <li>
+              <div class="item-content">
+                <div class="item-media tahold"><i class="f7-icons">person_round</i></div>
+                <div class="item-inner">
+                  <div class="item-title" style="white-space:normal; overflow: visible;">
+                    <div class="item-header">Nombre</div>
+                    | {{nombre}} {{paterno}} {{materno}}
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-media tahold"><i class="f7-icons">card</i></div>
+                <div class="item-inner">
+                  <div class="item-title">
+                    <div class="item-header">Matricula</div>
+                    | {{matricula}}
+                  </div>
+                </div>
+              </div>
+            </li>
+            {{#if verificado}}
+              <li class="tahold">
+                <div class="item-content">
+                  <div class="item-media"><i class="f7-icons text-color-green">check_round_fill</i></div>
+                  <div class="item-inner">
+                    <div class="item-title text-color-green">Cuenta Verificada</div>
+                  </div>
+                </div>
+              </li>
+              {{#if carrera}}
+                <li class="item-divider">Horario Registrado</li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">library</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Carrera</div>
+                        | {{carrera}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">library</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">
+                        <div class="item-header">Grupo</div>
+                        | {{grupo}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              {{else}}
+                <li class="item-divider tahold">Registrar Horario</li>
+                <li>
+                  <div class="block margin-top margin-bottom" style="margin-top:0px; margin-bottom:0px;">
+                    <a href="/seleccion/" class="button button-fill button-raised button-round color-green" data-view=".view-main">Agregar Horario</a>
+                  </div>
+                </li>
+              {{/if}}
+            {{else}}
+              <li class="tahold">
+                <div class="item-content">
+                  <div class="item-media"><i class="f7-icons text-color-red">close_round_fill</i></div>
+                  <div class="item-inner">
+                    <div class="item-title text-color-red">Cuenta no Verificada</div>
+                    <div class="item-after"><a class="col button button-fill button-round button-raised color-red" @click="reenviar">Reenviar</a></div>
+                  </div>
+                </div>
+              </li>
+              <li class="item-divider tahold">Registrar Horario</li>
+              <li class="margin-top margin-bottom margin-left margin-right"> Para poder registrar un horario necesitas verificar tu cuenta, si ha expirado el correo de verificación puede reenviarlo de nuevo</li>
+            {{/if}}
+          </ul>
+        </div>
+      {{/if}}
+
+      <div class="list" style="margin-top:0px; margin-bottom:0px;">
+        <ul>
+          <li class="item-divider tahold">¿Alguna duda? </li>
+          <li class="accordion-item"><a href="#" class="item-content item-link">
+              <div class="item-media"><i class="f7-icons">persons_round</i></div>
+              <div class="item-inner">
+                <div class="item-title">Contáctanos</div>
+              </div>
+            </a>
+            <div class="accordion-item-content list">
+              <ul>
+                <li>
+                  <a class="item-link item-content external" target="_system" href="https://m.me/wilbertbocamessenger">
+                    <div class="item-media"><i class="icon f7-icons text-color-blue">logo_facebook</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Facebook</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="item-link item-content external" target="_system" href="https://www.instagram.com/wilbertbocanegra">
+                    <div class="item-media"><i class="icon f7-icons text-color-orange">logo_instagram</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Instagram</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="item-link item-content external" target="_system"
+                    href="https://twitter.com/messages/compose?recipient_id=@wilbertboca&text=Hola%20mi%20nombre%20es:%20{{nombre}}%20{{paterno}}%20{{materno}}%20y%20necesito%20soporte%20para%20mi%20cuenta%20de%20horario%20con%20matricula:%20{{matricula}}">
+                    <div class="item-media"><i class="icon f7-icons text-color-blue">logo_twitter</i></div>
+                    <div class="item-inner">
+                      <div class="item-title">Twitter</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="item-link item-content external" target="_system"
+                    href="https://wa.me/529934004198?text=Hola%20mi%20nombre%20es:%20{{nombre}}%20{{paterno}}%20{{materno}}%20y%20necesito%20soporte%20para%20mi%20cuenta%20de%20horario%20con%20matricula:%20{{matricula}}">
+                    <div class="item-media"><img src="img/whatsapp.png" style="width:25px;"></div>
+                    <div class="item-inner">
+                      <div class="item-title">WhatsApp</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="item-divider tahold">Mas opciones</li>
+          <li>
+            <a class="item-link item-content no-chevron" @click="cerrarsesion">
+              <div class="item-media"><i class="icon f7-icons text-color-black">exit</i></div>
+              <div class="item-inner">
+                <div class="item-title">Cerrar Sesión</div>
+              </div>
+            </a>
+          </li>
+          <li class="item-divider"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  return {
+    data: function() {
+      return {
+        nombre: '',
+        paterno: '',
+        materno: '',
+        matricula: '',
+        carrera: '',
+        grupo: '',
+        perfil: [],
+        loading: true
+      }
+    },
+    methods: {
+      reenviar: function() {
+        app.dialog.preloader('Enviando correo de verificación', 'red');
+        var user = firebase.auth().currentUser;
+
+        if (user) {
+          user.sendEmailVerification().then(function() {
+            // Email sent.
+            app.dialog.close();
+            app.dialog.alert('Correo de verificación enviado con exito', '');
+          }).catch(function(error) {
+            // An error happened.
+          });
+        } else {
+          // No user is signed in.
+        }
+      },
+      cerrarsesion: () => {
+        app.dialog.create({
+          title: '',
+          text: '¿Desea cerrar sesion?',
+          buttons: [{
+              text: 'No',
+            },
+            {
+              text: 'Si',
+              onClick: () => {
+                app.dialog.preloader('Cerrando Sesión');
+
+                firebase.auth().signOut().then(function() {
+                  // Sign-out successful.
+                  localStorage.setItem("activo", "desactivado");
+                  app.dialog.close();
+                  mainView.router.navigate('/', {
+                    clearPreviousHistory: true,
+                    force: true,
+                    reloadAll: true,
+                    ignoreCache: true
+                  });
+                }).catch(function(error) {
+                  // An error happened.
+                });
+
+              }
+            },
+          ],
+        }).open();
+      }
+    },
+    on: {
+      pageInit: function() {
+        var self = this;
+        var storageRef = storage.ref();
+        let _perfil = [];
+
+
+
+        app.request.promise.get('http://webcore.uttab.edu.mx/webcore/apps/gettoken.jsp', {
+            uid: '421730007_i',
+            pwd: 'vevalenci0'
+          })
+          .then(function(res) {
+            $$('.articles').html(res.data);
+            console.log('Load was performed');
+          })
+
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var isAnonymous = user.isAnonymous;
+            var uid = user.uid;
+            var providerData = user.providerData;
+            // ...
+
+            var docRef = db.collection("usuarios").doc(email);
+
+            docRef.get().then(function(doc) {
+              if (doc.exists) {
+                self.$setState({
+                  nombre: doc.data().nombre,
+                  paterno: doc.data().paterno,
+                  materno: doc.data().materno,
+                  matricula: doc.data().matricula,
+                  carrera: doc.data().carrera,
+                  grupo: doc.data().grupo,
+                  verificado: emailVerified
+                });
+                var querycarrera = storageRef.child(doc.data().carrera + '.jpg');
+                var querydefault = storageRef.child('Default.png');
+
+                if (doc.data().grupo == "" && doc.data().carrera == "") {
+                  // Get the download URL
+                  // Insert url into an <img> tag to "download"
+                  querydefault.getDownloadURL().then(function(url) {
+                    _perfil.push({
+                      carrera: doc.data().carrera,
+                      grupo: doc.data().grupo,
+                      nombre: doc.data().nombre,
+                      verificado: emailVerified,
+                      matricula: doc.data().matricula,
+                      imagen: url
+                    });
+                    self.$setState({
+                      perfil: _perfil,
+                      loading: false
+                    });
+                    self.$setState({});
+                  }).catch(function(error) {
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                      case 'storage/object-not-found':
+                        // File doesn't exist
+                        break;
+                      case 'storage/unauthorized':
+                        // User doesn't have permission to access the object
+                        break;
+                      case 'storage/canceled':
+                        // User canceled the upload
+                        break;
+                      case 'storage/unknown':
+                        // Unknown error occurred, inspect the server response
+                        break;
+                    }
+                  });
+                } else {
+                  // Get the download URL
+                  // Insert url into an <img> tag to "download"
+                  querycarrera.getDownloadURL().then(function(url) {
+                    _perfil.push({
+                      carrera: doc.data().carrera,
+                      grupo: doc.data().grupo,
+                      nombre: doc.data().nombre,
+                      verificado: emailVerified,
+                      matricula: doc.data().matricula,
+                      imagen: url
+                    });
+                    self.$setState({
+                      perfil: _perfil,
+                    });
+                    self.$setState({
+                      loading: false
+                    });
+                  }).catch(function(error) {
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                      case 'storage/object-not-found':
+                        // File doesn't exist
+                        break;
+                      case 'storage/unauthorized':
+                        // User doesn't have permission to access the object
+                        break;
+                      case 'storage/canceled':
+                        // User canceled the upload
+                        break;
+                      case 'storage/unknown':
+                        // Unknown error occurred, inspect the server response
+                        break;
+                    }
+                  });
+                }
+
+              } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+              }
+            }).catch(function(error) {
+              console.log("Error getting document:", error);
+            });
+          } else {
+            // User is signed out.
+            // ...
+          }
+        });
+
+
+        var $ptrContent = $$('.ptr-content');
+        // Add 'refresh' listener on it
+        $ptrContent.on('ptr:refresh', function(e) {
+          mainView.router.refreshPage()
+        }, 2000);
+
+
+      },
+    },
+  };
+</script>

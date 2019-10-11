@@ -1,0 +1,398 @@
+<template>
+  <div class="page" data-name="mihorario">
+    <div class="navbar no-shadow  tahold">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="title">Mi horario</div>
+      </div>
+    </div>
+
+    <div class="toolbar tabbar tabbar-labels toolbar-top bg-color-white">
+      <div class="toolbar-inner">
+        <a href="#lunes" class="tab-link lunes click">
+          <i class="icon f7-icons">calendar_today</i>
+          <span class="tabbar-label">Lunes</span>
+        </a>
+        <a href="#martes" class="tab-link martes click">
+          <i class="icon f7-icons">calendar_today</i>
+          <span class="tabbar-label">Martes</span>
+        </a>
+        <a href="#miercoles" class="tab-link miercoles click">
+          <i class="icon f7-icons">calendar_today</i>
+          <span class="tabbar-label">Miercoles</span>
+        </a>
+        <a href="#jueves" class="tab-link jueves click">
+          <i class="icon f7-icons">calendar_today</i>
+          <span class="tabbar-label">Jueves</span>
+        </a>
+        <a href="#viernes" class="tab-link viernes click">
+          <i class="icon f7-icons">calendar_today</i>
+          <span class="tabbar-label">Viernes</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="tabs-swipeable-wrap">
+      <div class="tabs">
+        <div id="lunes" class="page-content sinhorario tab tab-lunes">
+
+
+          <div class="list" style="margin-bottom:0px; margin-top:0px;">
+            <ul>
+              <li class="item-divider"></li>
+              {{#each lunes}}
+
+                <!--  <div class="card">
+              <div class="card-header">{{inicia}}:00 - {{termina}}:00</div>
+              <div class="card-content card-content-padding">
+                <div class="display-flex justify-content-space-between align-items-flex-start margin-bottom">
+                  <div class="flex-shrink-0"></div>
+                  <div class="align-self-center">{{materia}}</div>
+                  <div class="align-self-flex-end"></div>
+                </div>
+                {{maestro}}
+              </div>
+              <div class="card-footer display-flex justify-content-space-between align-items-flex-start ">
+                <div class="chip color-orange flex-shrink-0 chip-label">Edificio: {{edificio}}</div>
+                <div class="chip color-blue align-self-flex-end chip-label ">Salon: {{salon}}</div>
+              </div>
+            </div>-->
+
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">clock_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Hora</div>
+                        | {{hora}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">rectangle_fill_on_rectangle_angled_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Materia</div>
+                        | {{hrtext}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="item-divider"></li>
+
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+        <div id="martes" class="page-content sinhorario tab tab-martes">
+          <div class="list" style="margin-bottom:0px; margin-top:0px;">
+            <ul>
+              <li class="item-divider"></li>
+              {{#each martes}}
+
+                <!--  <div class="card">
+              <div class="card-header">{{inicia}}:00 - {{termina}}:00</div>
+              <div class="card-content card-content-padding">
+                <div class="display-flex justify-content-space-between align-items-flex-start margin-bottom">
+                  <div class="flex-shrink-0"></div>
+                  <div class="align-self-center">{{materia}}</div>
+                  <div class="align-self-flex-end"></div>
+                </div>
+                {{maestro}}
+              </div>
+              <div class="card-footer display-flex justify-content-space-between align-items-flex-start ">
+                <div class="chip color-orange flex-shrink-0 chip-label">Edificio: {{edificio}}</div>
+                <div class="chip color-blue align-self-flex-end chip-label ">Salon: {{salon}}</div>
+              </div>
+            </div>-->
+
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">clock_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Hora</div>
+                        | {{hora}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">rectangle_fill_on_rectangle_angled_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Materia</div>
+                        | {{hrtext}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="item-divider"></li>
+
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+        <div id="miercoles" class="page-content sinhorario tab tab-miercoles">
+          <div class="list" style="margin-bottom:0px; margin-top:0px;">
+            <ul>
+              <li class="item-divider"></li>
+              {{#each miercoles}}
+
+                <!--  <div class="card">
+              <div class="card-header">{{inicia}}:00 - {{termina}}:00</div>
+              <div class="card-content card-content-padding">
+                <div class="display-flex justify-content-space-between align-items-flex-start margin-bottom">
+                  <div class="flex-shrink-0"></div>
+                  <div class="align-self-center">{{materia}}</div>
+                  <div class="align-self-flex-end"></div>
+                </div>
+                {{maestro}}
+              </div>
+              <div class="card-footer display-flex justify-content-space-between align-items-flex-start ">
+                <div class="chip color-orange flex-shrink-0 chip-label">Edificio: {{edificio}}</div>
+                <div class="chip color-blue align-self-flex-end chip-label ">Salon: {{salon}}</div>
+              </div>
+            </div>-->
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">clock_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Hora</div>
+                        | {{hora}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">rectangle_fill_on_rectangle_angled_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Materia</div>
+                        | {{hrtext}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="item-divider"></li>
+
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+        <div id="jueves" class="page-content sinhorario tab tab-jueves">
+          <div class="list" style="margin-bottom:0px; margin-top:0px;">
+            <ul>
+              <li class="item-divider"></li>
+              {{#each jueves}}
+
+                <!--  <div class="card">
+              <div class="card-header">{{inicia}}:00 - {{termina}}:00</div>
+              <div class="card-content card-content-padding">
+                <div class="display-flex justify-content-space-between align-items-flex-start margin-bottom">
+                  <div class="flex-shrink-0"></div>
+                  <div class="align-self-center">{{materia}}</div>
+                  <div class="align-self-flex-end"></div>
+                </div>
+                {{maestro}}
+              </div>
+              <div class="card-footer display-flex justify-content-space-between align-items-flex-start ">
+                <div class="chip color-orange flex-shrink-0 chip-label">Edificio: {{edificio}}</div>
+                <div class="chip color-blue align-self-flex-end chip-label ">Salon: {{salon}}</div>
+              </div>
+            </div>-->
+
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">clock_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Hora</div>
+                        | {{hora}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">rectangle_fill_on_rectangle_angled_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Materia</div>
+                        | {{hrtext}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="item-divider"></li>
+
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+        <div id="viernes" class="page-content sinhorario tab tab-viernes">
+          <div class="list" style="margin-bottom:0px; margin-top:0px;">
+            <ul>
+              <li class="item-divider"></li>
+              {{#each viernes}}
+
+                <!--  <div class="card">
+              <div class="card-header">{{inicia}}:00 - {{termina}}:00</div>
+              <div class="card-content card-content-padding">
+                <div class="display-flex justify-content-space-between align-items-flex-start margin-bottom">
+                  <div class="flex-shrink-0"></div>
+                  <div class="align-self-center">{{materia}}</div>
+                  <div class="align-self-flex-end"></div>
+                </div>
+                {{maestro}}
+              </div>
+              <div class="card-footer display-flex justify-content-space-between align-items-flex-start ">
+                <div class="chip color-orange flex-shrink-0 chip-label">Edificio: {{edificio}}</div>
+                <div class="chip color-blue align-self-flex-end chip-label ">Salon: {{salon}}</div>
+              </div>
+            </div>-->
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">clock_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Hora</div>
+                        | {{hora}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="f7-icons">rectangle_fill_on_rectangle_angled_fill</i></div>
+                    <div class="item-inner">
+                      <div class="item-title" style="white-space:normal; overflow: visible;">
+                        <div class="item-header">Materia</div>
+                        | {{hrtext}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="item-divider"></li>
+
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-content hide-navbar-on-scroll">
+
+    </div>
+  </div>
+</template>
+
+<script>
+  return {
+    data: function() {
+      return {
+        perfil: [],
+        lunes: [],
+        martes: [],
+        miercoles: [],
+        jueves: [],
+        viernes: [],
+        loading: true,
+      }
+    },
+    methods: {
+
+    },
+    on: {
+      pageMounted: function() {
+        var fecha = new Date();
+        var dias = new Array('domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado')
+        var hora = fecha.getHours();
+
+        if (dias[fecha.getDay()] == "lunes") {
+          $$('.lunes').addClass('tab-link-active');
+          $$('.tab-lunes').addClass('tab-active');
+        } else if (dias[fecha.getDay()] == "martes") {
+          console.log("hoy es martes");
+          $$('.martes').addClass('tab-link-active');
+          $$('.tab-martes').addClass('tab-active');
+        } else if (dias[fecha.getDay()] == "miercoles") {
+          console.log("hoy es miercoles");
+          $$('.miercoles').addClass('tab-link-active');
+          $$('.tab-miercoles').addClass('tab-active');
+        } else if (dias[fecha.getDay()] == "jueves") {
+          console.log("hoy es jueves");
+          $$('.jueves').addClass('tab-link-active');
+          $$('.tab-jueves').addClass('tab-active');
+        } else if (dias[fecha.getDay()] == "viernes") {
+          console.log("hoy es viernes");
+          $$('.viernes').addClass('tab-link-active');
+          $$('.tab-viernes').addClass('tab-active');
+        }
+        var self = this;
+        var app = self.$app;
+
+      },
+
+      pageInit: function() {
+        var self = this;
+        var app = self.$app;
+        let _lunes = [];
+        let _martes = [];
+        let _miercoles = [];
+        let _jueves = [];
+        let _viernes = [];
+        var datos = JSON.parse(localStorage.getItem('id'));
+        app.request({
+          url: 'http://webcore.uttab.edu.mx/webcore/apps/bin/getdata.jsp',
+          headers: {
+            Authorization: datos.Authorization
+          },
+          success: function(data) {
+            localStorage.setItem("horario", data);
+          }
+        });
+
+        var mihorario = JSON.parse(localStorage.getItem('horario')).data.map((a) => {
+          a.hora = a.hora.replace(/(dd)(dd)/, '$1:$2');
+          return a;
+        });
+        lunes = mihorario.filter((a, i) => {
+          if (a.dia == 1) return a
+        })
+        martes = mihorario.filter((a, i) => {
+          if (a.dia == 2) return a
+        })
+        miercoles = mihorario.filter((a, i) => {
+          if (a.dia == 3) return a
+        })
+        jueves = mihorario.filter((a, i) => {
+          if (a.dia == 4) return a
+        })
+        viernes = mihorario.filter((a, i) => {
+          if (a.dia == 5) return a
+        })
+
+        self.$setState({
+          lunes: lunes,
+          martes: martes,
+          miercoles: miercoles,
+          jueves: jueves,
+          viernes: viernes
+        });
+
+      },
+
+    },
+  };
+</script>
