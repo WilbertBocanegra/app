@@ -8,92 +8,24 @@
       <div class="block" style="top:83%; position:absolute; width:100%;">
         <p class="row">
           <a href="/inicio/" class="col button button-fill button-raised button-round color-white text-color-black margin-left margin-right">
-
-            <i class="icon f7-icons color-teal">email_fill</i>
-            Correo
+            <i class="icon f7-icons color-teal">hand_raised_fill</i>
+            Iniciar
           </a>
         </p>
-      <!--  <p class="row">
-          <button class="col button button-fill button-raised button-round color-white text-color-black" @click="authgoogle">
-            <i class="icon f7-icons color-orange">logo_google</i>
-            Google
-          </button>
-          <button class="col button button-fill button-raised button-round color-white text-color-black" @click="authfacebook">
-            <i class="icon f7-icons color-blue">logo_facebook</i>
-            Facebook
-          </button>
-
-        </p>-->
       </div>
-
     </div>
-
   </div>
 </template>
 
 <script>
   return {
     methods: {
-      authgoogle: () => {
-         var provider = new firebase.auth.GoogleAuthProvider();
-          firebase.auth().signInWithPopup(provider).then(function(result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
-          }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
-          });
 
-      },
-      authfacebook: () => {
-
-        var provider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-          var token = result.credential.accessToken;
-          // The signed-in user info.
-          var user = result.user;
-          // ...
-        }).catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // The email of the user's account used.
-          var email = error.email;
-          // The firebase.auth.AuthCredential type that was used.
-          var credential = error.credential;
-          // ...
-        });
-
-      }
     },
     on: {
       pageInit: function() {
 
-        if (localStorage.getItem("activo") == "activo") {
-          app.dialog.preloader('Iniciando Sesión', 'red');
-          firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-              app.dialog.close();
-              mainView.router.navigate('/home/');
-            } else {
-              app.dialog.close();
-              console.log("sesion no iniciada");
 
-            }
-          });
-        } else if (localStorage.getItem("activo") == "desactivado") {
-          app.dialog.close();
-          console.log("sesion no iniciada");
-        }
       },
     },
   };

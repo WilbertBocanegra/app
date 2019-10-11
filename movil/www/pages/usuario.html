@@ -1,16 +1,11 @@
 <template>
   <div class="page">
-    <div class="navbar">
+    <div class="navbar tahold">
       <div class="navbar-bg"></div>
-
       <div class="left">
       </div>
       <div class="navbar-inner sliding">
-
-        <div class="title tahold">Perfil</div>
-        <!--<div class="title-large bg-color-white">
-          <div class="title-large-text">Perfil</div>
-        </div>-->
+        <div class="title">Perfil</div>
       </div>
     </div>
     <div class="page-content">
@@ -87,8 +82,16 @@
               </div>
             </div>
           </li>
-          <li class="item-divider tahold"></li>
-
+          <li class="item-divider tahold"><i class="icon f7-icons" style="margin-right:5px;">gear_alt</i>Configuraciones</li>
+          <li>
+            <a href="#" class="item-link item-content" @click="cerrarsesion">
+              <div class="item-media"><i class="icon f7-icons">square_arrow_left</i></div>
+              <div class="item-inner">
+                <div class="item-title">Cerrar Sesión</div>
+              </div>
+            </a>
+          </li>
+          <li class="item-divider" style="height:30px;"></li>
 
         </ul>
       </div>
@@ -105,7 +108,30 @@
         loading: true
       }
     },
-    methods: {},
+    methods: {
+      cerrarsesion: function() {
+        app.dialog.create({
+          title: '',
+          text: '¿Esta seguro de cerrar su sesion?',
+          buttons: [{
+              text: 'No',
+            },
+            {
+              text: 'Si',
+              onClick: function() {
+                localStorage.setItem("matricula", '');
+                localStorage.setItem("contraseña", '');
+                mainView.router.navigate('/', {
+                  animate: false
+                });
+              }
+            },
+
+          ],
+        }).open();
+
+      },
+    },
     on: {
       pageInit: function() {
         var self = this;
@@ -120,7 +146,7 @@
           division: data.division,
           carrera: data.carrera,
           domicilio: data.domicilio,
-          tipousuario: data.usertype
+          tipousuario: data.usertype,
         });
 
       },

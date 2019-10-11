@@ -36,43 +36,10 @@ var app = new Framework7({
   routes: routes,
 });
 
-document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady() {
-  var push = PushNotification.init({
-         android: {
-             senderID: "XXXXXX"
-         },
-         ios: {
-             alert: "true",
-             badge: "true",
-             sound: "true"
-         },
-         windows: {}
-     });
-
-     push.on('registration', function(data) {
-         console.log("device token: " + data.registrationId);
-     });
-
-     push.on('notification', function(data) {
-            console.log(data.message);
-            console.log(data.title);
-            console.log(data.count);
-            console.log(data.sound);
-            console.log(data.image);
-            console.log(data.additionalData);
-     });
-
-     push.on('error', function(e) {
-            console.log(e.message)
-     });
-}
 
 var mainView = app.views.create('.view-main', {
   url: '/'
 })
-
 
 
 app.on('dialogOpen', function() {
@@ -100,4 +67,21 @@ document.addEventListener("backbutton", onBackKeyDown, false);
 
 function onBackKeyDown() {
 
+}
+
+var matricula = localStorage.getItem('matricula');
+var contraseña = localStorage.getItem('contraseña');
+
+if (matricula != '' && contraseña != '') {
+  var mainView = app.views.create('.view-main', {
+    url: '/home/'
+  })
+  app.request.post('http://webcore.uttab.edu.mx/webcore/apps/gettoken.jsp', {
+    uid: matricula,
+    pwd: contraseña
+  }, function(data) {
+    localStorage.setItem("id", data);
+    localStorage.setItem("matricula", matricula);
+    localStorage.setItem("contraseña", contraseña);
+  });
 }

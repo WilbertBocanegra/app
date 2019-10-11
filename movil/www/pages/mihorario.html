@@ -1,8 +1,9 @@
 <template>
   <div class="page" data-name="mihorario">
-    <div class="navbar no-shadow">
+    <div class="navbar no-shadow  tahold">
+      <div class="navbar-bg"></div>
       <div class="navbar-inner sliding">
-        <div class="title" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">Mi horario</div>
+        <div class="title">Mi horario</div>
       </div>
     </div>
 
@@ -362,8 +363,8 @@
           }
         });
 
-        var mihorario = JSON.parse(localStorage.getItem('horario')).data.map((a)=>{
-          a.hora=a.hora.replace(/(dd)(dd)/,'$1:$2');
+        var mihorario = JSON.parse(localStorage.getItem('horario')).data.map((a) => {
+          a.hora = a.hora.replace(/(dd)(dd)/, '$1:$2');
           return a;
         });
         lunes = mihorario.filter((a, i) => {
@@ -382,8 +383,6 @@
           if (a.dia == 5) return a
         })
 
-
-
         self.$setState({
           lunes: lunes,
           martes: martes,
@@ -391,8 +390,6 @@
           jueves: jueves,
           viernes: viernes
         });
-
-
 
       },
 

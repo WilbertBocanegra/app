@@ -1,43 +1,41 @@
 <template>
   <div class="page">
-    <div class="navbar">
+    <div class="navbar tahold">
       <div class="navbar-bg"></div>
-
       <div class="navbar-inner sliding">
-        <div class="title" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">Noticias</div>
-        <!--  <div class="title-large bg-color-white">
-          <div class="title-large-text">Noticias</div>
-        </div>-->
+        <div class="title">Noticias</div>
       </div>
     </div>
-    <div class="page-content  ">
-
-
-      {{#each noticias}}
-        <div class="card card-expandable">
-          <div class="card-content">
-            <div style="background: url('http://www.uttab.edu.mx/images/2451/{{picpreview}}') no-repeat center top; background-size: cover; height: 400px">
-              <div class="card-header text-color-white display-block">
-                {{title}}
-                <br>
-                <small style="opacity: 0.7">{{dodate}}</small>
-              </div>
-
-              <a href="#" class="link card-close card-opened-fade-in color-white" style="position: absolute; right: 15px; top: 15px">
-                <i class="icon f7-icons">xmark_circle_fill</i>
-              </a>
+    <div class="page-content">
+      {{#if loading}}
+          <div class="preloader confi-preloader color-multi" style="margin-left:40%;"></div>
+      {{else}}
+        {{#each noticias}}
+          <div class="card demo-card-header-pic">
+            <div style="background-image:url(http://www.uttab.edu.mx/images/2451/{{picpreview}})" class="card-header align-items-flex-end"></div>
+            <div class="card-content card-content-padding">
+              <p>{{title}}</p>
             </div>
-            <div class="card-content-padding">
-              {{content}}
-              <p>
-                <a href="#" class="button button-fill button-round button-large card-close">CERRAR</a>
-              </p>
-            </div>
+            <div class="card-footer">{{dodate}}<a href="#" class="button" @click="abrir('{{content}}','{{picpreview}}')">Ver</a></div>
+          </div>
+        {{/each}}
+      {{/if}}
+    </div>
+    <!--Popup-->
+    <div class="popup demo-popup">
+      <div class="page">
+        <div class="navbar">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner">
+            <div class="title">Title</div>
+            <div class="right"><a href="#" class="link popup-close"><i class="icon f7-icons">xmark</i></a></div>
           </div>
         </div>
-      {{/each}}
+        <div class="page-content">
+
+        </div>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -49,28 +47,55 @@
       }
     },
     methods: {
-      aceptar: function(color) {
-        app.dialog.alert(color)
+      abrir: function(content, picpreview) {
+        var dynamicPopup = app.popup.create({
+          content: '<div class="popup demo-popup">' +
+            ' <div class="page">' +
+            '<div class="navbar">' +
+            ' <div class="navbar-bg"></div>' +
+            ' <div class="navbar-inner">' +
+            ' <div class="title">Title</div>' +
+            '<div class="right"><a href="#" class="link popup-close"><i class="f7-icons">xmark</i></a></div>' +
+            '</div>' +
+            ' </div>' +
+            ' <div class="page-content">' +
+            '  <div class="card demo-card-header-pic  elevation-0 demo-lazy " style="  border-radius: 0px;margin-top:0px;margin-left: 0px;margin-right: 0px; margin-bottom:10px !important;">' +
+            '<div style="background-image:url(http://www.uttab.edu.mx/images/2451/' + picpreview +');   border-radius: 0px;margin-top:0px;margin-left: 0px;margin-right: 0px; margin-bottom:10px !important;"class="demo-lazy card-header align-items-flex-end"></div>' +
+            '</div>' +
+            '<br>'+
+            '<div class="block">' +
+            content +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>',
+
+          // Events
+          on: {
+          
+          }
+        });
+        dynamicPopup.open();
       }
     },
     on: {
       pageInit: function() {
         var self = this;
-        let _news = [];
-
 
         app.request({
           url: 'http://webcore.uttab.edu.mx/webcore/apps/getnews.jsp',
           success: function(data) {
             var news = eval(atob(JSON.parse(data).data));
             //var news = atob(data.data);
-            console.log(news)
             self.$setState({
               noticias: news,
+              loading: false
             });
-
           }
+
         })
+
 
       },
     },

@@ -1,10 +1,10 @@
-.navbar-bg  {
+.navbar-bg {
   background-color: white;
 }
 
 .md {
   --f7-page-bg-color: #fff;
-  --f7-page-transition-duration: 400ms;
+  --f7-page-transition-duration: 0ms;
 }
 
 :root {
@@ -60,7 +60,7 @@
 }
 
 .demo-card-header-pic .card-header {
-  height: 175px;
+  height: 250px;
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -71,8 +71,8 @@
 }
 
 .fondo-login {
-  background: url("../img/background.jpg") no-repeat center center fixed !important;
-  background-size: cover !important;
+  background: url("../img/backgroung.png") no-repeat center center fixed !important;
+  background-size: auto;
   top: 0px;
 }
 
