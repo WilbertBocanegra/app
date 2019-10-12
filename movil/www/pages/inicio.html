@@ -59,23 +59,28 @@
       iniciosesion: function() {
 
         var usuario = app.form.convertToData('#inicio');
-        var matricula= usuario.correo;
+        var matricula = usuario.correo;
         var contraseña = usuario.contraseña;
-        app.dialog.preloader('Iniciando Sesión', 'red');
+        if (matricula == '' && contraseña == '' | matricula == '' | contraseña == '') {
+          app.dialog.alert('Por favor rellene todos los campos', '');
+        } else {
+          app.dialog.preloader('Iniciando Sesión', 'red');
+          app.request.post('http://webcore.uttab.edu.mx/webcore/apps/gettoken.jsp', {
+            uid: matricula,
+            pwd: contraseña
+          }, function(data) {
+            localStorage.setItem("id", data);
+            localStorage.setItem("matricula", matricula);
+            localStorage.setItem("contraseña", contraseña);
+            mainView.router.navigate('/home/', {
+              animate: false
+            });
+            app.dialog.close();
 
-        app.request.post('http://webcore.uttab.edu.mx/webcore/apps/gettoken.jsp', {
-          uid: matricula,
-          pwd: contraseña
-        }, function(data) {
-          localStorage.setItem("id", data);
-          localStorage.setItem("matricula", matricula);
-          localStorage.setItem("contraseña", contraseña);
-          mainView.router.navigate('/home/', {
-            animate: false
           });
-          app.dialog.close();
+        }
 
-        });
+
 
       },
 

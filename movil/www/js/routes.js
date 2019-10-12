@@ -12,6 +12,9 @@ routes = [{
         var vistaperfil = app.views.create('#perfil', {
           url: '/usuario/'
         });
+        var vistaactividades = app.views.create('#actividades', {
+          url: '/actividades/'
+        });
       },
     }
   },
@@ -74,6 +77,13 @@ routes = [{
   {
     path: '/inicio/',
     componentUrl: './pages/inicio.html',
+    options: {
+      transition: 'f7-parallax',
+    }
+  },
+  {
+    path: '/actividades/',
+    componentUrl: './pages/actividades.html',
     options: {
       transition: 'f7-parallax',
     }
