@@ -61,7 +61,11 @@
         var usuario = app.form.convertToData('#inicio');
         var matricula = usuario.correo;
         var contraseña = usuario.contraseña;
-        if (matricula == '' && contraseña == '' | matricula == '' | contraseña == '') {
+        if (matricula == '' && contraseña == '') {
+          app.dialog.alert('Por favor rellene todos los campos', '');
+        } else if (matricula == '') {
+          app.dialog.alert('Por favor rellene todos los campos', '');
+        } else if (contraseña == '') {
           app.dialog.alert('Por favor rellene todos los campos', '');
         } else {
           app.dialog.preloader('Iniciando Sesión', 'red');
@@ -73,7 +77,8 @@
             localStorage.setItem("matricula", matricula);
             localStorage.setItem("contraseña", contraseña);
             mainView.router.navigate('/home/', {
-              animate: false
+              animate: false,
+              clearPreviousHistory: true
             });
             app.dialog.close();
 
