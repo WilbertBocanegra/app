@@ -3,9 +3,6 @@ routes = [{
     componentUrl: './pages/home.html',
     on: {
       pageInit: function() {
-        var vistanoticia = app.views.create('#noticias', {
-          url: '/noticias/'
-        });
         var vistamihorario = app.views.create('#mihorario', {
           url: '/mihorario/'
         });
@@ -68,7 +65,7 @@ routes = [{
     }
   },
   {
-    path: '/',
+    path: '/login/',
     componentUrl: './pages/login.html',
     options: {
       transition: 'f7-parallax',
@@ -84,6 +81,13 @@ routes = [{
   {
     path: '/actividades/',
     componentUrl: './pages/actividades.html',
+    options: {
+      transition: 'f7-parallax',
+    }
+  },
+  {
+    path: '/',
+    componentUrl: './pages/noticias2.html',
     options: {
       transition: 'f7-parallax',
     }

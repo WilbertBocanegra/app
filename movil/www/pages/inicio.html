@@ -1,6 +1,6 @@
 <template>
   <div class="page" data-name="inicio">
-    <div class="navbar no-shadow">
+    <div class="navbar">
       <div class="navbar-bg"></div>
       <div class="navbar-inner sliding">
         <div class="left">
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="page-content">
-      <form class="list  no-hairlines-md color-theme-teal" id="inicio">
+      <form class="list  no-hairlines-md color-theme-teal" id="inicio" style="margin-top:25%;">
         <ul>
           <li class="item-content item-input">
             <div class="item-media">
@@ -68,7 +68,7 @@
         } else if (contraseña == '') {
           app.dialog.alert('Por favor rellene todos los campos', '');
         } else {
-          app.dialog.preloader('Iniciando Sesión', 'red');
+          app.dialog.preloader('Iniciando Sesión', 'green');
           app.request.post('http://webcore.uttab.edu.mx/webcore/apps/gettoken.jsp', {
             uid: matricula,
             pwd: contraseña

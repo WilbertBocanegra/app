@@ -3,9 +3,12 @@
     <div class="navbar tahold">
       <div class="navbar-bg"></div>
       <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="/inicio/" class="link tooltip-init" data-tooltip="Iniciar Sesión"><i class="icon f7-icons">square_arrow_right</i></a>
+        </div>
         <div class="title">Noticias</div>
         <div class="right">
-          <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-noticias">
+          <a class="link icon-only searchbar-enable tooltip-init" data-tooltip="Buscar Noticia" data-searchbar=".searchbar-noticias">
             <i class="icon f7-icons if-not-md">search</i>
             <i class="icon material-icons md-only">search</i>
           </a>
@@ -29,19 +32,18 @@
           <li>No existe esta noticia</li>
         </ul>
       </div>
-      <div class="list search-list-noticias searchbar-found no-hairlines">
+      <div class="list search-list-noticias searchbar-found no-hairlines" style="margin-top:10px;">
         <ul>
           {{#if loading}}
             <div class="preloader confi-preloader color-multi" style="margin-left:40%;"></div>
           {{else}}
             {{#each noticias}}
               <li>
-                <div class="card demo-card-header-pic">
-                  <div style="background-image:url(http://www.uttab.edu.mx/images/2451/{{picpreview}});" class="card-header align-items-flex-end"></div>
-                  <div class="card-content card-content-padding">
+                <div class="card demo-facebook-card">
+                  <div class="card-content card-content-padding"><img src="http://www.uttab.edu.mx/images/2451/{{picpreview}}" width="100%" />
                     <p>{{title}}</p>
                   </div>
-                  <div class="card-footer">{{dodate}}<a href="#" class="button" @click="abrir('{{content}}','{{picpreview}}')">Ver</a></div>
+                  <div class="card-footer bg-color-white">{{dodate}}<a href="#" class="button text-color-black" @click="abrir('{{content}}','{{picpreview}}')">Ver</a></div>
                 </div>
               </li>
             {{/each}}
@@ -73,11 +75,9 @@
             '</div>' +
             ' </div>' +
             ' <div class="page-content">' +
-            '  <div class="card demo-card-header-pic  elevation-0 demo-lazy " style="  border-radius: 0px;margin-top:0px;margin-left: 0px;margin-right: 0px; margin-bottom:10px !important;">' +
-            '<div style="background-image:url(http://www.uttab.edu.mx/images/2451/' + picpreview +
-            ');   border-radius: 0px;margin-top:0px;margin-left: 0px;margin-right: 0px; margin-bottom:10px !important;"class="demo-lazy card-header align-items-flex-end"></div>' +
+            '<div class="card demo-facebook-card demo-lazy ">' +
+            '<div class="card-content"><img src="http://www.uttab.edu.mx/images/2451/' + picpreview + '" width="100%"/></div>' +
             '</div>' +
-            '<br>' +
             '<div class="block">' +
             content +
             '</div>' +
@@ -103,7 +103,6 @@
           async: false,
           success: function(data) {
             var news = eval(atob(JSON.parse(data).data));
-            //var news = atob(data.data);
             self.$setState({
               noticias: news,
               loading: false
