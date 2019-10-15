@@ -1,25 +1,22 @@
 routes = [{
-    path: '/home/',
-    componentUrl: './pages/home.html',
-    on: {
-      pageInit: function() {
-        var vistamihorario = app.views.create('#mihorario', {
-          url: '/mihorario/'
-        });
-        var vistaperfil = app.views.create('#perfil', {
-          url: '/usuario/'
-        });
-        var vistaactividades = app.views.create('#actividades', {
-          url: '/actividades/'
-        });
-      },
+    path: '/',
+    componentUrl: './pages/inicio.html',
+    options: {
+      transition: 'f7-parallax',
     }
   },
   {
-    path: '/perfil/',
-    componentUrl: './pages/perfil.html',
+    path: '/login/',
+    componentUrl: './pages/login.html',
     options: {
       transition: 'f7-parallax',
+    }
+  },
+  {
+    path: '/home/',
+    componentUrl: './pages/home.html',
+    on: {
+      pageInit: function() {},
     }
   },
   {
@@ -37,59 +34,22 @@ routes = [{
     }
   },
   {
-    path: '/noticias/',
-    componentUrl: './pages/noticias.html',
+    path: '/kardex/',
+    componentUrl: './pages/kardex.html',
     options: {
       transition: 'f7-parallax',
     }
   },
   {
-    path: '/about/',
-    componentUrl: './pages/about.html',
+    path: '/avisos/',
+    componentUrl: './pages/avisos.html',
     options: {
       transition: 'f7-parallax',
     }
   },
+  // Default route, match to all pages (e.g. 404 page)
   {
-    path: '/form/',
-    componentUrl: './pages/form.html',
-    options: {
-      transition: 'f7-parallax',
-    }
-  },
-  {
-    path: '/seleccion/',
-    componentUrl: './pages/seleccion.html',
-    options: {
-      transition: 'f7-parallax',
-    }
-  },
-  {
-    path: '/login/',
-    componentUrl: './pages/login.html',
-    options: {
-      transition: 'f7-parallax',
-    }
-  },
-  {
-    path: '/inicio/',
-    componentUrl: './pages/inicio.html',
-    options: {
-      transition: 'f7-parallax',
-    }
-  },
-  {
-    path: '/actividades/',
-    componentUrl: './pages/actividades.html',
-    options: {
-      transition: 'f7-parallax',
-    }
-  },
-  {
-    path: '/',
-    componentUrl: './pages/noticias2.html',
-    options: {
-      transition: 'f7-parallax',
-    }
+    path: '(.*)',
+    url: './pages/404.html',
   },
 ]

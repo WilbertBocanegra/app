@@ -82,6 +82,10 @@
     width: 55px;
     height: 55px;
   }
+  .login-class {
+    margin-left: 35% !important;
+    margin-top:2em !important;
+  }
 }
 
 @media (orientation: portrait) {
@@ -90,6 +94,8 @@
     width: 70px;
     height: 70px;
   }
+
+
 }
 
 .statusbar {

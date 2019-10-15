@@ -1,0 +1,148 @@
+<template>
+  <div class="page" data-name="mihorario">
+    <div class="navbar tahold">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link panel-open" data-panel=".panel-left"><i class="icon f7-icons">bars</i></a>
+        </div>
+        <div class="title">Mis Calificaciones</div>
+      </div>
+    </div>
+    <div class="page-content">
+        {{#each items}}
+        <div class="card">
+            <div class="card-header" style="font-weight: bold;">
+              Cuatrimestre {{level}} :
+            </div>
+            <div class="card-content">
+              <div class="list media-list">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-inner">
+                          <div class="row" style="font-size: 0.9em;">
+                              <div class="col-50">
+                                  <div class="item-title" style="font-weight: bold;">Asignatura</div>
+                              </div>
+                              <div class="col-50">
+                                  <div class="row" style="font-size: 0.9em;">
+                                      <div class="col">P1</div>
+                                      <div class="col">P2</div>
+                                      <div class="col">P3</div>
+                                      <div class="col">P4</div>
+                                      <div class="col">CF</div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                      </li>
+                  {{#each this.items}}
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <!--
+                      <div class="item-title-row">
+                        <div class="item-title" style="font-weight: bold;">{{asignatura}}</div>
+                      </div>
+                      -->
+                      <div class="row" style="font-size: 0.7em;">
+                          <div class="col-50">
+                              <div class="item-title" style="font-weight: bold;font-size:0.9em;">{{asignatura}}</div>
+                          </div>
+                          <div class="col-50">
+                              <div class="row" style="font-size: 0.7em;">
+                                  <div class="col">{{p1}}</div>
+                                  <div class="col">{{p2}}</div>
+                                  <div class="col">{{p3}}</div>
+                                  <div class="col">{{p4}}</div>
+                                  <div class="col">{{cf}}</div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                  </li>
+                  {{/each}}
+                  <!--
+                  <li class="item-content">
+                    <div class="item-media"><img src="https://cdn.framework7.io/placeholder/fashion-88x88-5.jpg" width="44"/></div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title">Don't Stop Me Now</div>
+                      </div>
+                      <div class="item-subtitle">Queen</div>
+                    </div>
+                  </li>
+                  </li>
+                  -->
+                </ul>
+              </div>
+            </div>
+            <!--
+            <div class="card-footer"> <span>January 20, 2015</span><span>5 comments</span></div>
+            -->
+          </div>
+          {{/each}}
+    </div>
+  </div>
+</template>
+
+<script>
+  /*
+
+asignatura: "Patrimonio Culinario de México"
+cf: "SA"
+cuatrimestre: "1"
+cve_alumno: "64012"
+p1: "SA"
+p2: "SA"
+p3: "DE"
+p4: "SA"
+  */
+  return {
+    data: function() {
+      return {
+        items: [],
+        loading: true,
+      }
+    },
+    methods: {
+
+    },
+    on: {
+      pageMounted: function() {
+        var self = this;
+        var app = self.$app;
+
+      },
+
+      pageInit: function() {
+        var self = this;
+        var app = self.$app;
+        var datos = JSON.parse(localStorage.getItem('id'));
+        app.request({
+          url: 'http://webcore.uttab.edu.mx/webcore/apps/bin/getdata.jsp?op=1',
+          headers: {
+            Authorization: datos.Authorization
+          },
+          success: function(data) {
+            data = JSON.parse(data).data;
+
+            data = data.reduce((items,item)=>{
+              if(!items) items = [];
+
+              if(!items[item.cuatrimestre])
+                items[item.cuatrimestre] = {level:item.cuatrimestre,items:[]};
+
+              items[item.cuatrimestre].items.push(item)
+
+              return items;
+            },{});
+            self.$setState({
+              items: data,
+              loading: false
+            });
+          }
+        });
+      },
+    },
+  };
+</script>

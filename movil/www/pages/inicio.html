@@ -1,50 +1,57 @@
 <template>
-  <div class="page" data-name="inicio">
-    <div class="navbar">
+  <div class="page">
+    <div class="navbar tahold">
       <div class="navbar-bg"></div>
       <div class="navbar-inner sliding">
         <div class="left">
-          <a href="#" class="link back">
-            <i class="icon icon-back"></i>
+          <a href="/login/" class="link tooltip-init" data-tooltip="Iniciar Sesión"><i class="icon f7-icons">square_arrow_right</i></a>
+        </div>
+
+        <div class="title">Noticias</div>
+        <div class="right">
+          <a class="link icon-only searchbar-enable tooltip-init" data-tooltip="Buscar Noticia" data-searchbar=".searchbar-noticias">
+            <i class="icon f7-icons if-not-md">search</i>
+            <i class="icon material-icons md-only">search</i>
           </a>
         </div>
-        <div class="title">Inicio de Sesión</div>
+        <form data-search-container=".search-list-noticias" data-search-in=".buscaraqui" class="searchbar searchbar-expandable searchbar-noticias searchbar-init">
+          <div class="searchbar-inner">
+            <div class="searchbar-input-wrap">
+              <input type="search" placeholder="Buscar noticia" />
+              <i class="searchbar-icon"></i>
+              <span class="input-clear-button"></span>
+            </div>
+            <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+          </div>
+        </form>
       </div>
     </div>
     <div class="page-content">
-      <form class="list  no-hairlines-md color-theme-teal" id="inicio" style="margin-top:25%;">
+      <div class="searchbar-backdrop"></div>
+      <div class="list simple-list searchbar-not-found">
         <ul>
-          <li class="item-content item-input">
-            <div class="item-media">
-              <i class="icon f7-icons text-color-black">barcode_viewfinder</i>
-            </div>
-            <div class="item-inner">
-              <div class="item-title item-floating-label">Matricula</div>
-              <div class="item-input-wrap">
-                <input type="text" name="correo" placeholder="Tu matricula">
-                <span class="input-clear-button text-color-red"></span>
-              </div>
-            </div>
-          </li>
-          <li class="item-content item-input">
-            <div class="item-media">
-              <i class="icon f7-icons text-color-black">lock</i>
-            </div>
-            <div class="item-inner">
-              <div class="item-title item-floating-label">Contraseña</div>
-              <div class="item-input-wrap">
-                <input type="password" name="contraseña" placeholder="Tu contraseña">
-                <span class="input-clear-button text-color-red"></span>
-              </div>
-            </div>
-          </li>
+          <li>No existe esta noticia</li>
         </ul>
-      </form>
-      <div class="block block-strong no-hairlines margin-left margin-right">
-        <button class="button button-fill button-raised button-round color-green" @click="iniciosesion">Iniciar Sesión</button>
+      </div>
+      <div class="list search-list-noticias searchbar-found no-hairlines" style="margin-top:10px;">
+        <ul>
+          {{#if loading}}
+            <div class="preloader confi-preloader color-multi" style="margin-left:40%;"></div>
+          {{else}}
+            {{#each noticias}}
+              <li>
+                <div class="card demo-facebook-card buscaraqui">
+                  <div class="card-content card-content-padding"><img src="http://www.uttab.edu.mx/images/2451/{{picpreview}}" width="100%" />
+                    <p>{{title}}</p>
+                  </div>
+                  <div class="card-footer bg-color-white">{{dodate}}<a href="#" class="button text-color-black" @click="abrir('{{id}}')">Ver</a></div>
+                </div>
+              </li>
+            {{/each}}
+          {{/if}}
+        </ul>
       </div>
     </div>
-    <!-- Final registro usuario-->
   </div>
 </template>
 
@@ -52,46 +59,64 @@
   return {
     data: function() {
       return {
-
+        noticias: [],
+        loading: true,
       }
     },
     methods: {
-      iniciosesion: function() {
+      abrir: function(id) {
+        var item = news.filter((a) => {
+          if (a.id == id) return a
+        })[0];
 
-        var usuario = app.form.convertToData('#inicio');
-        var matricula = usuario.correo;
-        var contraseña = usuario.contraseña;
-        if (matricula == '' && contraseña == '') {
-          app.dialog.alert('Por favor rellene todos los campos', '');
-        } else if (matricula == '') {
-          app.dialog.alert('Por favor rellene todos los campos', '');
-        } else if (contraseña == '') {
-          app.dialog.alert('Por favor rellene todos los campos', '');
-        } else {
-          app.dialog.preloader('Iniciando Sesión', 'green');
-          app.request.post('http://webcore.uttab.edu.mx/webcore/apps/gettoken.jsp', {
-            uid: matricula,
-            pwd: contraseña
-          }, function(data) {
-            localStorage.setItem("id", data);
-            localStorage.setItem("matricula", matricula);
-            localStorage.setItem("contraseña", contraseña);
-            mainView.router.navigate('/home/', {
-              animate: false,
-              clearPreviousHistory: true
-            });
-            app.dialog.close();
+        var dynamicPopup = app.popup.create({
+          content: '<div class="popup demo-popup">' +
+            ' <div class="page">' +
+            '<div class="navbar">' +
+            ' <div class="navbar-bg"></div>' +
+            ' <div class="navbar-inner">' +
+            ' <div class="title">Detalle de la Noticia</div>' +
+            '<div class="right"><a href="#" class="link popup-close"><i class="f7-icons">xmark</i></a></div>' +
+            '</div>' +
+            ' </div>' +
+            ' <div class="page-content">' +
+            '<div class="card demo-facebook-card demo-lazy ">' +
+            '<div class="card-content"><img src="http://www.uttab.edu.mx/images/2451/' + item.picpreview + '" width="100%"/></div>' +
+            '</div>' +
+            '<div class="block" style="text-align:justify;margin-top:1.5em;">' +
+            item.content +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>',
 
-          });
-        }
+          // Events
+          on: {
 
-
-
-      },
-
+          }
+        });
+        dynamicPopup.open();
+      }
     },
     on: {
       pageInit: function() {
+        var self = this;
+
+
+
+        app.request({
+          url: 'http://webcore.uttab.edu.mx/webcore/apps/getnews.jsp',
+          async: false,
+          success: function(data) {
+            news = eval(decodeURIComponent(escape(atob(JSON.parse(data).data).replace(/<\/(p|P)>/g, '|').replace(/<\/?\w+>/g, ''))));
+            self.$setState({
+              noticias: news,
+              loading: false
+            });
+          }
+        })
+
 
       },
     },

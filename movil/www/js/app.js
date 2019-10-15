@@ -37,9 +37,6 @@ var app = new Framework7({
 });
 
 
-var mainView = app.views.create('.view-main', {
-  url: '/'
-})
 
 
 app.on('dialogOpen', function() {
@@ -67,6 +64,21 @@ document.addEventListener("backbutton", onBackKeyDown, false);
 
 function onBackKeyDown() {
 
+  app.dialog.create({
+    title: '',
+    text: '¿Desea salir de la App?',
+    buttons: [{
+        text: 'No',
+      },
+      {
+        text: 'Si',
+        onClick: function() {
+          navigator.app.exitApp();
+        }
+      },
+
+    ],
+  }).open();
 }
 
 var matricula = localStorage.getItem('matricula');
@@ -84,4 +96,32 @@ if (matricula != '' && contraseña != '') {
     localStorage.setItem("matricula", matricula);
     localStorage.setItem("contraseña", contraseña);
   });
+} else {
+  var mainView = app.views.create('.view-main', {
+    url: '/'
+  })
+
+}
+
+function cerrarsesion() {
+  app.dialog.create({
+    title: '',
+    text: '¿Esta seguro de cerrar su sesion?',
+    buttons: [{
+        text: 'No',
+      },
+      {
+        text: 'Si',
+        onClick: function() {
+          localStorage.setItem("matricula", '');
+          localStorage.setItem("contraseña", '');
+          mainView.router.navigate('/', {
+            animate: false,
+            clearPreviousHistory: true
+          });
+        }
+      },
+
+    ],
+  }).open();
 }

@@ -1,52 +1,92 @@
 <template>
-  <div class="page">
-
-    <div class="page-content login-screen-content">
-      <div class="login-screen-title">My App</div>
-      <form>
-        <div class="list">
-          <ul>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-label">Username</div>
-                <div class="item-input-wrap">
-                  <input type="text" name="username" placeholder="Your username">
-                </div>
-              </div>
-            </li>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-label">Password</div>
-                <div class="item-input-wrap">
-                  <input type="password" name="password" placeholder="Your password">
-                </div>
-              </div>
-            </li>
-          </ul>
+  <div class="page" data-name="inicio">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+          </a>
         </div>
-        <div class="list">
-          <ul>
-            <li><a class="item-link list-button" href="#">Sign In</a></li>
-          </ul>
-          <div class="block-footer">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p><a class="link login-screen-close" href="#">Close Login Screen</a></p>
-          </div>
-        </div>
-      </form>
+        <div class="title">Inicio de Sesión</div>
+      </div>
     </div>
-  </div>
+    <div class="page-content">
+      <div class="login-class" style="background: url(./img/backgroung.png) no-repeat center top; background-size: cover; height: 200px; width:200px; margin-left:25%; margin-top:5em " ></div>
+      <form class="list  no-hairlines-md color-theme-teal" id="inicio">
+        <ul>
+          <li class="item-content item-input">
+            <div class="item-media">
+              <i class="icon f7-icons text-color-black">barcode_viewfinder</i>
+            </div>
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Matricula</div>
+              <div class="item-input-wrap">
+                <input type="text" name="correo" placeholder="Tu matricula">
+                <span class="input-clear-button text-color-red"></span>
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-media">
+              <i class="icon f7-icons text-color-black">lock</i>
+            </div>
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Contraseña</div>
+              <div class="item-input-wrap">
+                <input type="password" name="contraseña" placeholder="Tu contraseña">
+                <span class="input-clear-button text-color-red"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+      <div class="block block-strong no-hairlines margin-left margin-right">
+        <button class="button button-fill button-raised button-round color-green" @click="iniciosesion">Iniciar Sesión</button>
+      </div>
+    </div>
+    <!-- Final registro usuario-->
   </div>
 </template>
 
 <script>
   return {
+    data: function() {
+      return {
+
+      }
+    },
     methods: {
+      iniciosesion: function() {
+        var usuario = app.form.convertToData('#inicio');
+        var matricula = usuario.correo;
+        var contraseña = usuario.contraseña;
+        app.dialog.preloader('Iniciando Sesión', 'red');
+        app.request.post('http://webcore.uttab.edu.mx/webcore/apps/gettoken.jsp', {
+          uid: matricula,
+          pwd: contraseña
+        }, function(data) {
+          data = JSON.parse(data);
+          if (data.isValid) {
+            localStorage.setItem("id", JSON.stringify(data));
+            localStorage.setItem("matricula", matricula);
+            localStorage.setItem("contraseña", contraseña);
+            mainView.router.navigate('/home/', {
+              animate: false
+            });
+            app.dialog.close();
+          } else {
+            app.dialog.alert('Los datos ingresados son incorrectos. Por favor verifique e intente de nuevo.', 'Error de autenticación.');
+            app.dialog.close();
+          }
+        });
+
+
+      },
 
     },
     on: {
       pageInit: function() {
-
 
       },
     },
