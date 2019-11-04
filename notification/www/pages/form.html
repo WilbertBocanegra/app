@@ -1,0 +1,60 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+          </a>
+        </div>
+        <div class="title" >Title</div>
+
+      </div>
+    </div>
+    <div class="page-content">
+
+    </div>
+  </div>
+</template>
+
+<script>
+  return {
+    on: {
+      pageInit: function () {
+
+
+        $$('.aceptar').on('click', function(){
+          var formData = app.form.convertToData('#crearsesion');
+        var ingles=formData.ingles;
+        var español=formData.español;
+
+
+          // Add a new document with a generated id.
+          dbstore.collection("cinthia").add({
+              ingles: ingles,
+              español: español,
+
+          })
+          .then(function(docRef) {
+              console.log("Document written with ID: ", docRef.id);
+app.dialog.alert("Su palabra se guardo",'Exito');
+          })
+          .catch(function(error) {
+              console.error("Error adding document: ", error);
+          });
+
+
+
+
+
+
+
+
+        });
+
+
+      },
+    },
+  };
+</script>
