@@ -1,119 +1,156 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <!--
-  Customize this policy to fit your own app's needs. For more guidance, see:
-      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-  Some notes:
-      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-          * Enable inline JS: add 'unsafe-inline' to default-src
-  -->
-  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="msapplication-tap-highlight" content="no">
-  <title>test</title>
-  <link rel="stylesheet" href="lib/framework7/css/framework7.bundle.min.css">
-  <link rel="stylesheet" href="lib/framework7/css/framework7.keypad.min.css">
-  <link rel="stylesheet" href="lib/framework7/css/framework7.bundle.min.css">
-  <link rel="stylesheet" href="css/framework7-icons.css">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <!-- Customize this policy to fit your own app's needs. For more guidance, see:
+        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes: * gap: is required only on iOS (when using UIWebView) and is needed
+        for JS->native communication * https://ssl.gstatic.com is required only on
+        Android and is needed for TalkBack to function properly * Disables use of inline
+        scripts in order to mitigate risk of XSS vulnerabilities. To change this: *
+        Enable inline JS: add 'unsafe-inline' to default-src -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <title>UTTAB V3</title>
+        <link rel="stylesheet" href="lib/framework7/css/framework7.bundle.min.css">
+        <link rel="stylesheet" href="lib/framework7/css/framework7.keypad.min.css">
+        <link rel="stylesheet" href="css/framework7-icons.css">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
 
-<body>
-  <div id="app">
-    <div class="panel panel-left panel-cover">
-      <div class="navbar no-shadow tahold">
-        <div class="navbar-bg"></div>
-        <div class="navbar-inner sliding">
-          <div class="right">
-            <a href="#" class="link panel-close"><i class="icon f7-icons">xmark</i></a>
-          </div>
+    <body class="">
+        <div id="app">
+            <div class="statusbar"></div>
+            <div class="panel panel-left panel-cover">
+                <div class="view">
+                    <div class="page">
+                        <div class="navbar no-shadow tahold">
+                            <div class="navbar-bg"></div>
+                            <div class="navbar-inner sliding">
+                                <div class="right">
+                                    <a href="#" class="link panel-close">
+                                        <i class="icon f7-icons">xmark</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page-content">
+                            <div class="list no-hairlines" style="margin-top: 0px;">
+                                <ul>
+                                    <!-- <li> <a href="/avisos/" class="item-link item-content panel-close"
+                                    data-clear-previous-history="true"> <div class="item-media"><i class="icon
+                                    f7-icons">bell_circle_fill<span class="badge color-red">5</span></i></div> <div
+                                    class="item-inner"> <div class="item-title">Avisos</div> </div> </a> </li> -->
+                                    <li>
+                                        <a
+                                            href="/home/"
+                                            class="item-link item-content panel-close"
+                                            data-clear-previous-history="false">
+                                            <div class="item-media">
+                                                <i class="icon f7-icons">globe</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Noticias</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="/mihorario/"
+                                            class="item-link item-content panel-close"
+                                            data-clear-previous-history="false">
+                                            <div class="item-media">
+                                                <i class="icon f7-icons">calendar</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Mi Horario</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="/kardex/"
+                                            class="item-link item-content panel-close"
+                                            data-clear-previous-history="false">
+                                            <div class="item-media">
+                                                <i class="icon f7-icons">doc_text</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Calificaciones</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="/usuario/"
+                                            class="item-link item-content panel-close"
+                                            data-clear-previous-history="false">
+                                            <div class="item-media">
+                                                <i class="icon f7-icons">person_alt_circle_fill</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Mi Cuenta</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="item-divider tahold">
+                                        <i class="icon f7-icons" style="margin-right:5px;">gear_alt</i>Configuraciones</li>
+                                    <li>
+                                        <a href="/temas/" class="item-link item-content panel-close">
+                                            <div class="item-media">
+                                                <i class="icon f7-icons">circle_lefthalf_fill
+                                                </i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Tema de interfaz</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            class="item-link item-content panel-close"
+                                            onclick="cerrarsesion();">
+                                            <div class="item-media">
+                                                <i class="icon f7-icons">square_arrow_left</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Cerrar Sesión</div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view view-main"></div>
         </div>
-      </div>
-      <div class="list no-hairlines" style="margin-top:0px;">
-        <ul>
-          <li>
-        <a href="/avisos/" class="item-link item-content panel-close" data-clear-previous-history="true">
-              <div class="item-media"><i class="icon f7-icons">bell_circle_fill<span class="badge color-red">5</span></i></div>
-              <div class="item-inner">
-                <div class="item-title">Avisos</div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/home/" class="item-link item-content panel-close" data-clear-previous-history="true">
-              <div class="item-media"><i class="icon f7-icons">globe</i></div>
-              <div class="item-inner">
-                <div class="item-title">Noticias</div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/mihorario/" class="item-link item-content panel-close" data-clear-previous-history="true">
-              <div class="item-media"><i class="icon f7-icons">calendar</i></div>
-              <div class="item-inner">
-                <div class="item-title">Mi Horario</div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/kardex/" class="item-link item-content panel-close" data-clear-previous-history="true">
-              <div class="item-media"><i class="icon f7-icons">doc_text</i></div>
-              <div class="item-inner">
-                <div class="item-title">Calificaciones</div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/usuario/" class="item-link item-content panel-close" data-clear-previous-history="true">
-              <div class="item-media"><i class="icon f7-icons">person_alt_circle_fill</i></div>
-              <div class="item-inner">
-                <div class="item-title">Mi Cuenta</div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/about/" class="item-link item-content panel-close" data-clear-previous-history="true">
-              <div class="item-media"><i class="icon f7-icons">info</i></div>
-              <div class="item-inner">
-                <div class="item-title">About</div>
-              </div>
-            </a>
-          </li>
-          <li class="item-divider tahold"><i class="icon f7-icons" style="margin-right:5px;">gear_alt</i>Configuraciones</li>
-          <li>
-            <a href="#" class="item-link item-content panel-close" onclick="cerrarsesion();">
-              <div class="item-media"><i class="icon f7-icons">square_arrow_left</i></div>
-              <div class="item-inner">
-                <div class="item-title">Cerrar Sesión</div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
 
-    <div class="view view-main"></div>
-  </div>
-
-
-  <!-- Cordova -->
-  <script type="text/javascript" src="cordova.js"></script>
-  <!-- Framework7 library -->
-  <script type="text/javascript" src="lib/framework7/js/framework7.bundle.min.js"></script>
-  <script type="text/javascript" src="lib/framework7/js/framework7.keypad.min.js"></script>
-  <!-- App routes -->
-  <script type="text/javascript" src="js/routes.js"></script>
-  <!-- Your custom app scripts -->
-  <script type="text/javascript" src="js/app.js"></script>
-
-</body>
+        <!-- Cordova -->
+        <script type="text/javascript" src="cordova.js"></script>
+        <!-- Firebase api-->
+        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
+        <!-- Firebase connection -->
+        <script type="text/javascript" src="js/firebase_connection.js"></script>
+        <!-- Framework7 library -->
+        <script type="text/javascript" src="lib/framework7/js/framework7.bundle.min.js"></script>
+        <script type="text/javascript" src="lib/framework7/js/framework7.keypad.min.js"></script>
+        <!-- App routes -->
+        <script type="text/javascript" src="js/routes.js"></script>
+        <!-- Your custom app scripts -->
+        <script type="text/javascript" src="js/app.js"></script>
+    </body>
 
 </html>

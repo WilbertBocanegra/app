@@ -4,7 +4,11 @@
       <div class="navbar-bg"></div>
       <div class="navbar-inner sliding">
         <div class="left">
-          <a href="#" class="link panel-open" data-panel=".panel-left"><i class="icon f7-icons">bars</i></a>
+          {{#if $app.logged}}
+            <a href="/home/" class="link panel-open" data-panel=".panel-left"><i class="icon f7-icons">bars</i></a>
+          {{else}}
+            <a href="/login/" class="link tooltip-init" data-tooltip="Iniciar Sesión"><i class="icon f7-icons">person</i></a>
+          {{/if}}
         </div>
         <div class="title">Noticias</div>
         <div class="right">
@@ -25,7 +29,11 @@
         </form>
       </div>
     </div>
-    <div class="page-content">
+    <div class="page-content ptr-content">
+        <div class="ptr-preloader">
+            <div class="preloader"></div>
+            <div class="ptr-arrow"></div>
+        </div>
       <div class="searchbar-backdrop"></div>
       <div class="list simple-list searchbar-not-found">
         <ul>
@@ -41,9 +49,9 @@
               <li>
                 <div class="card demo-facebook-card buscaraqui">
                   <div class="card-content card-content-padding"><img src="http://www.uttab.edu.mx/images/2451/{{picpreview}}" width="100%" />
-                    <p>{{title}}</p>
+                    <p style="font-weight: bold">{{title}}</p>
                   </div>
-                  <div class="card-footer bg-color-white">{{dodate}}<a href="#" class="button text-color-black" @click="abrir('{{id}}')">Ver</a></div>
+                  <div class="card-footer">{{dodate}}<a href="#" class="button text-color-black" @click="abrir('{{id}}')">Ver</a></div>
                 </div>
               </li>
             {{/each}}
@@ -55,6 +63,43 @@
 </template>
 
 <script>
+
+  doNews = (handler) => {
+    var lastupdate = localStorage.getItem("lastupdate")||"-1";
+    app.request({
+      url: 'http://webcore.uttab.edu.mx/webcore/apps/getnews.jsp',
+      data:{
+        timestamp:lastupdate
+      },
+      async: false,
+      success: function(data) {
+        data = eval(decodeURIComponent(escape(atob(JSON.parse(data).data).replace(/<\/(p|P)>/g, '|').replace(/<\/?\w+>/g, ''))));
+
+        news = localStorage.getItem("news");
+        news = news ? JSON.parse(news):{};
+
+        data.map((a)=>{
+          news[a.id]=a;
+        });
+        localStorage.setItem("news",JSON.stringify(news));
+        var current_datetime = new Date();
+        var current_datetime = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds() 
+        localStorage.setItem("lastupdate",current_datetime);
+
+        var items = [];
+        Object.keys(news).map((a)=>items.push(news[a]));
+        items=items.sort((a,b)=>b.id-a.id);
+        news = items;
+        handler(items);
+
+      }
+    });
+  }
+
+    //news = eval(decodeURIComponent(escape(atob(JSON.parse(data).data).replace(/<\/(p|P)>/g, '|').replace(/<\/?\w+>/g, ''))));
+  //}
+
+
   return {
     data: function() {
       return {
@@ -74,16 +119,17 @@
             '<div class="navbar">' +
             ' <div class="navbar-bg"></div>' +
             ' <div class="navbar-inner">' +
-            ' <div class="title">Detalle de la Noticia</div>' +
+            ' <div class="title">Detalle de la noticia</div>' +
             '<div class="right"><a href="#" class="link popup-close"><i class="f7-icons">xmark</i></a></div>' +
             '</div>' +
             ' </div>' +
             ' <div class="page-content">' +
             '<div class="card demo-facebook-card demo-lazy ">' +
-            '<div class="card-content"><img src="http://www.uttab.edu.mx/images/2451/' + item.picpreview + '" width="100%"/></div>' +
+            '<div class="card-content"><img style="margin-bottom:2.5em;" src="http://www.uttab.edu.mx/images/2451/' + item.picpreview + '" width="100%"/></div>' +
             '</div>' +
-            '<div class="block" style="text-align:justify;margin-top:1.5em;">' +
-            item.content +
+            '<div class="block" style="text-align:justify;margin-top:2.5em;">' +
+            '<h2 style="text-align:center;padding:0.5em;">'+item.title+'</h2>'+
+            item.content.replace(/\|/g,'<br/><br/>') +
             '</div>' +
             '</div>' +
             '</div>' +
@@ -101,21 +147,26 @@
     on: {
       pageInit: function() {
         var self = this;
-
-        app.request({
-          url: 'http://webcore.uttab.edu.mx/webcore/apps/getnews.jsp',
-          async: false,
-          success: function(data) {
-            news = eval(decodeURIComponent(escape(atob(JSON.parse(data).data).replace(/<\/(p|P)>/g, '|').replace(/<\/?\w+>/g, ''))));
-            self.$setState({
-              noticias: news,
+        doNews((data)=>{
+              self.$setState({
+              noticias: data,
               loading: false
             });
-          }
-        })
+          });
 
-
-      },
-    },
-  };
+        var $ptrContent = $$('.ptr-content');
+        $ptrContent.on('ptr:refresh', (e)=>{
+        setTimeout(()=>{
+          doNews((data)=>{
+              self.$setState({
+              noticias: data,
+              loading: false
+            });
+            app.ptr.done();
+          })
+          }, 2000);  
+        });
+    }
+  }
+}
 </script>

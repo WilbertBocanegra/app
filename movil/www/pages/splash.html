@@ -1,0 +1,32 @@
+<template>
+  <div class="page" data-name="splash">
+    <div class="page-content" style="text-align:center;top:30%">
+      <img src="./img/backgroung.png" style="margin: auto">
+      <div class="col-25">
+        <div class="preloader color-blue"></div>
+      </div>
+    </div>
+</template>
+
+<script>
+  return {
+    data: function() {
+      return {
+
+      }
+    },
+    on: {
+      pageInit: function() {
+     
+        setTimeout(()=>{
+          mainView.router.navigate('/home/', {
+            animate: true,
+            clearPreviousHistory: true
+          });
+        },3000)
+
+      },
+      
+    },
+  };
+</script>

@@ -5,8 +5,9 @@ Framework7.use(Framework7Keypad);
 // Framework7 App main instance
 var app = new Framework7({
   root: '#app', // App root element
-  id: 'io.framework7.testapp', // App bundle ID
+  id: 'mx.edu.uttab.uttabapp', // App bundle ID
   name: 'Framework7', // App name
+  logged:false,
   theme: 'md', // Automatic theme detection
   view: {
     stackPages: false,
@@ -24,6 +25,10 @@ var app = new Framework7({
     threshold: 600,
     sequential: false,
   },
+  panel: {
+    swipe: true,
+    
+  },
   card: {
     swipeToClose: false,
   },
@@ -35,8 +40,6 @@ var app = new Framework7({
   // App routes
   routes: routes,
 });
-
-
 
 
 app.on('dialogOpen', function() {
@@ -60,48 +63,35 @@ app.on('cardClose', function() {
   app.statusbar.setBackgroundColor('#FFFFFF');
 });
 
+var popupOpen=false;
+app.on('popupOpen',function(){
+popupOpen=true;
+ console.log("abierto")
+})
+
+app.on('popupClose',function(){
+  popupOpen=false;
+  console.log("cerrado")
+})
+
 document.addEventListener("backbutton", onBackKeyDown, false);
 
 function onBackKeyDown() {
-
-  app.dialog.create({
-    title: '',
-    text: '¿Desea salir de la App?',
-    buttons: [{
-        text: 'No',
-      },
-      {
-        text: 'Si',
-        onClick: function() {
-          navigator.app.exitApp();
-        }
-      },
-
-    ],
-  }).open();
+  if(popupOpen==true){
+      app.popup.close();	
+      console.log("cerrado con backbutton")
+    }else if(app.views.main.history.length == 1){
+        navigator.app.exitApp (); 
+        }else{
+            mainView.router.back();
+        }   
 }
 
-var matricula = localStorage.getItem('matricula');
-var contraseña = localStorage.getItem('contraseña');
+app.logged=localStorage.getItem("id")!=undefined;
+var mainView = app.views.create('.view-main', {
+  url: '/'
+});
 
-if (matricula != '' && contraseña != '') {
-  var mainView = app.views.create('.view-main', {
-    url: '/home/'
-  })
-  app.request.post('http://webcore.uttab.edu.mx/webcore/apps/gettoken.jsp', {
-    uid: matricula,
-    pwd: contraseña
-  }, function(data) {
-    localStorage.setItem("id", data);
-    localStorage.setItem("matricula", matricula);
-    localStorage.setItem("contraseña", contraseña);
-  });
-} else {
-  var mainView = app.views.create('.view-main', {
-    url: '/'
-  })
-
-}
 
 function cerrarsesion() {
   app.dialog.create({
@@ -113,10 +103,10 @@ function cerrarsesion() {
       {
         text: 'Si',
         onClick: function() {
-          localStorage.setItem("matricula", '');
-          localStorage.setItem("contraseña", '');
+          localStorage.clear();
+          app.logged=false;
           mainView.router.navigate('/', {
-            animate: false,
+            animate: true,
             clearPreviousHistory: true
           });
         }
@@ -125,3 +115,5 @@ function cerrarsesion() {
     ],
   }).open();
 }
+
+

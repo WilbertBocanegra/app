@@ -1,0 +1,77 @@
+<template>
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+              <div class="left">
+                <a href="#" class="link back">
+                  <i class="icon icon-back"></i>
+                  <span class="if-not-md">Back</span>
+                </a>
+              </div>
+              <div class="title">Color Themes</div>
+              <div class="title-large">
+                <div class="title-large-text">Color Themes</div>
+              </div>
+            </div>
+          </div>
+          <div class="page-content">
+            <div class="block-title block-title-medium">Layout Themes</div>
+            <div class="block block-strong">
+              <p>Framework7 comes with 2 main layout themes: Light (default) and Dark:</p>
+              <div class="row">
+                <div class="col-50 bg-color-white demo-theme-picker" @click="setLayoutTheme('light')">
+                  {{#js_if 'this.theme === "light"'}}
+                  <label class="checkbox">
+                    <input type="checkbox" checked disabled>
+                    <i class="icon-checkbox"></i>
+                  </label>
+                  {{/js_if}}
+                </div>
+                <div class="col-50 bg-color-black demo-theme-picker" @click="setLayoutTheme('dark')">
+                  {{#js_if 'this.theme === "dark"'}}
+                  <label class="checkbox">
+                    <input type="checkbox" checked disabled>
+                    <i class="icon-checkbox"></i>
+                  </label>
+                  {{/js_if}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+      <script>
+        var stylesheet;
+        var globalTheme = 'light';
+        var globalCustomColor = '';
+        return {
+          data: function () {
+       
+            return {
+              theme: globalTheme,
+              themeColor: globalCustomColor || this.$('html').css('--f7-theme-color').trim(),
+            };
+          },
+          mounted: function () {
+            if (!stylesheet) {
+              stylesheet = document.createElement('style');
+              document.head.appendChild(stylesheet);
+            }
+          },
+          methods: {
+            setLayoutTheme: function (theme) {
+              var self = this;
+              var $html = self.$('html');
+              globalTheme = theme;
+              $html.removeClass('theme-dark theme-light').addClass('theme-' + globalTheme);
+              self.$setState({ theme: globalTheme });
+            },
+          },
+          on: {
+            pageInit() {
+           
+            },
+          }
+        }
+      </script>

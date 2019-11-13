@@ -12,6 +12,7 @@
       </div>
     </div>
     <div class="page-content">
+      
       <div class="login-class" style="background: url(./img/backgroung.png) no-repeat center top; background-size: cover; height: 200px; width:200px; margin-left:25%; margin-top:5em " ></div>
       <form class="list  no-hairlines-md color-theme-teal" id="inicio">
         <ul>
@@ -22,7 +23,7 @@
             <div class="item-inner">
               <div class="item-title item-floating-label">Matricula</div>
               <div class="item-input-wrap">
-                <input type="text" name="correo" placeholder="Tu matricula">
+                <input type="text" name="correo" placeholder="Tu matricula" value="">
                 <span class="input-clear-button text-color-red"></span>
               </div>
             </div>
@@ -34,7 +35,7 @@
             <div class="item-inner">
               <div class="item-title item-floating-label">Contraseña</div>
               <div class="item-input-wrap">
-                <input type="password" name="contraseña" placeholder="Tu contraseña">
+                <input type="password" name="contraseña" placeholder="Tu contraseña" value="">
                 <span class="input-clear-button text-color-red"></span>
               </div>
             </div>
@@ -71,7 +72,8 @@
             localStorage.setItem("id", JSON.stringify(data));
             localStorage.setItem("matricula", matricula);
             localStorage.setItem("contraseña", contraseña);
-            mainView.router.navigate('/home/', {
+            app.logged=true;
+            mainView.router.navigate('/mihorario/', {
               animate: false
             });
             app.dialog.close();

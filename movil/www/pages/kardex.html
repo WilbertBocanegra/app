@@ -44,12 +44,12 @@
                         <div class="item-title" style="font-weight: bold;">{{asignatura}}</div>
                       </div>
                       -->
-                      <div class="row" style="font-size: 0.7em;">
+                      <div class="row" style="font-size: 0.9em;">
                           <div class="col-50">
                               <div class="item-title" style="font-weight: bold;font-size:0.9em;">{{asignatura}}</div>
                           </div>
                           <div class="col-50">
-                              <div class="row" style="font-size: 0.7em;">
+                              <div class="row" style="font-size: 0.9em;">
                                   <div class="col">{{p1}}</div>
                                   <div class="col">{{p2}}</div>
                                   <div class="col">{{p3}}</div>
@@ -86,17 +86,7 @@
 </template>
 
 <script>
-  /*
-
-asignatura: "Patrimonio Culinario de México"
-cf: "SA"
-cuatrimestre: "1"
-cve_alumno: "64012"
-p1: "SA"
-p2: "SA"
-p3: "DE"
-p4: "SA"
-  */
+  
   return {
     data: function() {
       return {
@@ -118,7 +108,10 @@ p4: "SA"
         var self = this;
         var app = self.$app;
         var datos = JSON.parse(localStorage.getItem('id'));
-        app.request({
+        var data = localStorage.getItem("kardex");
+
+        if(!data){
+          app.request({
           url: 'http://webcore.uttab.edu.mx/webcore/apps/bin/getdata.jsp?op=1',
           headers: {
             Authorization: datos.Authorization
@@ -136,12 +129,20 @@ p4: "SA"
 
               return items;
             },{});
+            localStorage.setItem('kardex',JSON.stringify(data));
             self.$setState({
               items: data,
               loading: false
             });
           }
         });
+        }else{
+          data = JSON.parse(data);
+          self.$setState({
+              items: data,
+              loading: false
+            });
+        }
       },
     },
   };

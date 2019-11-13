@@ -205,6 +205,39 @@
 </template>
 
 <script>
+
+  showScheduler = (data, handler)=>{
+    var days = {
+      lunes:[],
+      martes:[],
+      miercoles:[],
+      jueves:[],
+      viernes:[]
+    };
+    
+        var mihorario = JSON.parse(data).data.map((a) => {
+          a.hora = a.hora.replace(/(\d\d)(\d\d)/, '$1:$2');
+          return a;
+        });
+        days.lunes = mihorario.filter((a, i) => {
+          if (a.dia == 1) return a
+        })
+        days.martes = mihorario.filter((a, i) => {
+          if (a.dia == 2) return a
+        })
+        days.miercoles = mihorario.filter((a, i) => {
+          if (a.dia == 3) return a
+        })
+        days.jueves = mihorario.filter((a, i) => {
+          if (a.dia == 4) return a
+        })
+        days.viernes = mihorario.filter((a, i) => {
+          if (a.dia == 5) return a
+        });
+        handler(days);
+  } 
+
+
   return {
     data: function() {
       return {
@@ -230,19 +263,15 @@
           $$('.lunes').addClass('tab-link-active');
           $$('.tab-lunes').addClass('tab-active');
         } else if (dias[fecha.getDay()] == "martes") {
-          console.log("hoy es martes");
           $$('.martes').addClass('tab-link-active');
           $$('.tab-martes').addClass('tab-active');
         } else if (dias[fecha.getDay()] == "miercoles") {
-          console.log("hoy es miercoles");
           $$('.miercoles').addClass('tab-link-active');
           $$('.tab-miercoles').addClass('tab-active');
         } else if (dias[fecha.getDay()] == "jueves") {
-          console.log("hoy es jueves");
           $$('.jueves').addClass('tab-link-active');
           $$('.tab-jueves').addClass('tab-active');
         } else if (dias[fecha.getDay()] == "viernes") {
-          console.log("hoy es viernes");
           $$('.viernes').addClass('tab-link-active');
           $$('.tab-viernes').addClass('tab-active');
         }
@@ -254,50 +283,37 @@
       pageInit: function() {
         var self = this;
         var app = self.$app;
-        let _lunes = [];
-        let _martes = [];
-        let _miercoles = [];
-        let _jueves = [];
-        let _viernes = [];
-        var datos = JSON.parse(localStorage.getItem('id'));
-        app.request({
-          url: 'http://webcore.uttab.edu.mx/webcore/apps/bin/getdata.jsp',
-          headers: {
-            Authorization: datos.Authorization
-          },
-          success: function(data) {
-            localStorage.setItem("horario", data);
-          }
-        });
-
-        var mihorario = JSON.parse(localStorage.getItem('horario')).data.map((a) => {
-          a.hora = a.hora.replace(/(dd)(dd)/, '$1:$2');
-          return a;
-        });
-        lunes = mihorario.filter((a, i) => {
-          if (a.dia == 1) return a
-        })
-        martes = mihorario.filter((a, i) => {
-          if (a.dia == 2) return a
-        })
-        miercoles = mihorario.filter((a, i) => {
-          if (a.dia == 3) return a
-        })
-        jueves = mihorario.filter((a, i) => {
-          if (a.dia == 4) return a
-        })
-        viernes = mihorario.filter((a, i) => {
-          if (a.dia == 5) return a
-        })
-
-        self.$setState({
-          lunes: lunes,
-          martes: martes,
-          miercoles: miercoles,
-          jueves: jueves,
-          viernes: viernes
-        });
-
+        var data = localStorage.getItem("horario");
+        if(!data){
+          var datos = JSON.parse(localStorage.getItem('id'));
+          app.request({
+            url: 'http://webcore.uttab.edu.mx/webcore/apps/bin/getdata.jsp',
+            headers: {
+              Authorization: datos.Authorization
+            },
+            success: function(data) {
+              showScheduler(data,(days)=>{
+                self.$setState({
+                lunes: days.lunes,
+                martes: days.martes,
+                miercoles: days.miercoles,
+                jueves: days.jueves,
+                viernes: days.viernes
+              });
+              });
+            }
+          });
+        }else{
+          showScheduler(data, (days)=>{
+            self.$setState({
+              lunes: days.lunes,
+              martes: days.martes,
+              miercoles: days.miercoles,
+              jueves: days.jueves,
+              viernes: days.viernes
+            });
+          });
+        }
       },
 
     },

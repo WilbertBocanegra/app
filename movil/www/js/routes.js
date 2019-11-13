@@ -1,6 +1,6 @@
 routes = [{
     path: '/',
-    componentUrl: './pages/inicio.html',
+    componentUrl: './pages/splash.html',
     options: {
       transition: 'f7-parallax',
     }
@@ -15,6 +15,13 @@ routes = [{
   {
     path: '/home/',
     componentUrl: './pages/home.html',
+    on: {
+      pageInit: function() {},
+    }
+  },
+  {
+    path: '/temas/',
+    componentUrl: './pages/temas.html',
     on: {
       pageInit: function() {},
     }
@@ -40,6 +47,7 @@ routes = [{
       transition: 'f7-parallax',
     }
   },
+  /*
   {
     path: '/avisos/',
     componentUrl: './pages/avisos.html',
@@ -47,13 +55,7 @@ routes = [{
       transition: 'f7-parallax',
     }
   },
-  {
-    path: '/about/',
-    componentUrl: './pages/about.html',
-    options: {
-      transition: 'f7-parallax',
-    }
-  },
+  */
   // Default route, match to all pages (e.g. 404 page)
   {
     path: '(.*)',
